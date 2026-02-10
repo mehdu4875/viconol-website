@@ -1,0 +1,87 @@
+{
+  "Navbar": {
+    "home": "STARTSEITE",
+    "products": "UNSERE PRODUKTE",
+    "society": "DAS UNTERNEHMEN",
+    "contact": "KONTAKT",
+    "all_catalogue": "GESAMTKATALOG"
+  },
+  "Home": {
+    "badge": "Deutsche Ingenieurskunst V.2.0",
+    "hero_title": "VICONÖL",
+    "subtitle": "Die perfekte Allianz zwischen fortschrittlicher Chemie und mechanischer Leistung.",
+    "cta": "KATALOG ENTDECKEN",
+    "stats": {
+      "tech_title": "Synthetische Technologie",
+      "tech_desc": "Fortschrittliche Molekularformeln.",
+      "iso_title": "ISO-Zertifizierte Normen",
+      "iso_desc": "Übertrifft Herstelleranforderungen.",
+      "global_title": "Internationale Präsenz",
+      "global_desc": "Deutsche Exzellenz in Europa."
+    },
+    "history": "UNSERE GESCHICHTE",
+    "history_title": "Exzellenz",
+    "history_made_in": "Made in Germany",
+    "history_text_1": "Seit der Gründung hat sich VICONÖL als unverzichtbare Referenz im Bereich der Hochleistungsschmierstoffe etabliert. Geboren aus der Strenge der deutschen Ingenieurskunst, verkörpert unsere Marke die Fusion aus industrieller Tradition und chemischer Innovation.",
+    "history_text_2": "Jeder Tropfen unserer Öle ist das Ergebnis jahrelanger Laborforschung, um absoluten Motorschutz zu gewährleisten, selbst unter extremsten Bedingungen.",
+    "history_stats_countries": "EXPORTLÄNDER",
+    "history_stats_quality": "ZERTIFIZIERTE QUALITÄT",
+    "contact_header": "BLEIBEN SIE IN VERBINDUNG",
+    "contact_title": "Kontaktieren Sie uns",
+    "contact_cards": {
+      "address_title": "Hauptsitz",
+      "address_text": "Industriestraße 45, Berlin",
+      "support_title": "Kundenservice",
+      "hours_title": "Öffnungszeiten",
+      "hours_text": "Mo - Fr : 09:00 - 18:00"
+    }
+  },
+  "Products": {
+    "title": "UNSERE SCHMIERSTOFFE",
+    "filter": "Filtern nach",
+    "all_products": "Alle anzeigen",
+    "count_catalogue": "{count} Produkte im Katalog",
+    "search_results": "Ergebnisse: \"{query}\"",
+    "found_products": "{count} Produkt(e) gefunden",
+    "category_count": "{category} — {count} Produkt(e)",
+    "no_results": "Keine Ergebnisse gefunden",
+    "try_another_keyword": "Versuchen Sie ein anderes Stichwort (z.B. 5W30, Öl...)",
+    "view_product": "PRODUKT ANSEHEN",
+    "discover": "ENTDECKEN"
+  },
+  "ProductDetail": {
+    "protection": "Motorschutz",
+    "performance": "Leistung",
+    "datasheet": "Datenblatt",
+    "datasheet_unavailable": "Datenblatt nicht verfügbar",
+    "contact_us": "Kontaktieren Sie uns"
+  },
+  "Search": {
+    "placeholder": "Produkt suchen (z.B. 5W30, Hydraulik...)",
+    "examples": "Beispiele:",
+    "enter": "Enter",
+    "validate": "zum Bestätigen",
+    "esc": "ESC"
+  },
+  "Contact": {
+    "title": "KONTAKTIEREN SIE UNS",
+    "form_name": "Ihr Name",
+    "form_email": "Ihre E-Mail",
+    "form_message": "Ihre Nachricht",
+    "send_btn": "NACHRICHT SENDEN",
+    "address_title": "UNSER SITZ",
+    "phone": "Telefon",
+    "email": "E-Mail"
+  },
+  "Footer": {
+    "rights": "Alle Rechte vorbehalten.",
+    "privacy": "Datenschutzerklärung",
+    "terms": "Impressum",
+    "description": "Führender Anbieter von Hochleistungsschmierstoffen."
+  },
+  "NotFound": {
+    "title": "SEITE NICHT GEFUNDEN",
+    "description": "Die gesuchte Seite existiert nicht.",
+    "back_home": "ZURÜCK ZUR STARTSEITE"
+  }
+}

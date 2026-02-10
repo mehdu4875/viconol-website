@@ -1,0 +1,18 @@
+# Dépendances
+node_modules/
+.pnpm-store/
+
+# Production
+.next/
+build/
+
+# Environnement et Secrets (TRES IMPORTANT)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Système
+.DS_Store
+Thumbs.db
