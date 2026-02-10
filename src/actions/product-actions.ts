@@ -24,21 +24,43 @@ export async function getProductBySlug(slug: string) {
   });
 }
 
-// ADMIN: Créer un produit
+// ADMIN: Créer un produit (Correction des types ici)
 export async function createProduct(data: FormData) {
-  // Ici, logique d'upload de fichier (ex: vers Vercel Blob ou AWS S3)
-  // Simulation des URLs pour l'exemple
+  // Image placeholder par défaut si pas d'upload
   const imageUrl = "/uploads/placeholder.jpg"; 
   
+  // 1. On récupère les valeurs en forçant le type string
+  const name = data.get("name") as string;
+  // Génération slug sécurisée
+  const slug = name ? name.toLowerCase().replace(/ /g, "-") : "produit-sans-nom";
+  
+  const shortDescFr = data.get("shortDescFr") as string;
+  const shortDescDe = data.get("shortDescDe") as string;
+  const longDescFr = data.get("longDescFr") as string;
+  const longDescDe = data.get("longDescDe") as string;
+  
+  const categoryId = data.get("categoryId") as string;
+  const rangeId = data.get("rangeId") as string;
+
   await prisma.product.create({
     data: {
-      slug: data.get("name")!.toString().toLowerCase().replace(/ /g, "-"),
-      name: data.get("name") as string,
-      shortDesc: { fr: data.get("shortDescFr"), de: data.get("shortDescDe") },
-      longDesc: { fr: data.get("longDescFr"), de: data.get("longDescDe") },
+      slug,
+      name,
+      // 2. On construit les objets JSON proprement
+      shortDesc: { 
+        fr: shortDescFr || "", 
+        de: shortDescDe || "",
+        en: shortDescFr || "" // Fallback
+      },
+      longDesc: { 
+        fr: longDescFr || "", 
+        de: longDescDe || "",
+        en: longDescFr || "" // Fallback
+      },
       imageUrl: imageUrl,
-      categoryId: data.get("categoryId") as string,
-      rangeId: data.get("rangeId") as string,
+      categoryId: categoryId,
+      // Si rangeId est vide, on met null
+      rangeId: rangeId || null,
     }
   });
 

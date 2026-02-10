@@ -4,18 +4,17 @@ import { prisma } from "@/lib/db";
 import { revalidatePath } from "next/cache";
 import { isAdmin } from "./admin-auth";
 
-// --- 1. CRÉER UN PRODUIT (L'erreur venait d'ici) ---
+// --- 1. CRÉER UN PRODUIT ---
 export async function createProduct(formData: FormData) {
   if (!await isAdmin()) throw new Error("Non autorisé");
 
   const name = formData.get("name") as string;
-  // Génération automatique du slug si non fourni
   const slug = (formData.get("slug") as string) || name.toLowerCase().replace(/ /g, "-");
-  
   const imageUrl = formData.get("imageUrl") as string;
   const categoryId = formData.get("categoryId") as string;
+  // Gestion du rangeId optionnel
+  const rangeId = formData.get("rangeId") as string;
 
-  // On force le type string pour éviter l'erreur TypeScript "FormDataEntryValue"
   const shortDescFr = formData.get("shortDescFr") as string;
   const shortDescDe = formData.get("shortDescDe") as string;
   const longDescFr = formData.get("longDescFr") as string;
@@ -27,6 +26,7 @@ export async function createProduct(formData: FormData) {
       slug,
       imageUrl,
       categoryId,
+      rangeId: rangeId || null, // Important : null si vide
       shortDesc: { 
         fr: shortDescFr || "", 
         de: shortDescDe || "", 
@@ -52,6 +52,7 @@ export async function updateProduct(formData: FormData) {
   const slug = formData.get("slug") as string;
   const imageUrl = formData.get("imageUrl") as string;
   const categoryId = formData.get("categoryId") as string;
+  const rangeId = formData.get("rangeId") as string;
   
   const shortDescFr = formData.get("shortDescFr") as string;
   const shortDescDe = formData.get("shortDescDe") as string;
@@ -65,6 +66,7 @@ export async function updateProduct(formData: FormData) {
       slug,
       imageUrl,
       categoryId,
+      rangeId: rangeId || null,
       shortDesc: { 
         fr: shortDescFr || "", 
         de: shortDescDe || "", 
