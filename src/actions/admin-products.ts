@@ -12,7 +12,6 @@ export async function createProduct(formData: FormData) {
   const slug = (formData.get("slug") as string) || name.toLowerCase().replace(/ /g, "-");
   const imageUrl = formData.get("imageUrl") as string;
   const categoryId = formData.get("categoryId") as string;
-  // Gestion du rangeId optionnel
   const rangeId = formData.get("rangeId") as string;
 
   const shortDescFr = formData.get("shortDescFr") as string;
@@ -26,7 +25,7 @@ export async function createProduct(formData: FormData) {
       slug,
       imageUrl,
       categoryId,
-      rangeId: rangeId || null, // Important : null si vide
+      rangeId: rangeId || null,
       shortDesc: { 
         fr: shortDescFr || "", 
         de: shortDescDe || "", 

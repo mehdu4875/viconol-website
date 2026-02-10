@@ -24,43 +24,49 @@ export async function getProductBySlug(slug: string) {
   });
 }
 
-// ADMIN: Créer un produit (Correction des types ici)
+// ADMIN: Créer un produit
 export async function createProduct(data: FormData) {
-  // Image placeholder par défaut si pas d'upload
-  const imageUrl = "/uploads/placeholder.jpg"; 
-  
-  // 1. On récupère les valeurs en forçant le type string
+  // 1. Extraction et sécurisation des données
+  // "as string" dit à TypeScript : "Je te promets que c'est du texte"
   const name = data.get("name") as string;
-  // Génération slug sécurisée
-  const slug = name ? name.toLowerCase().replace(/ /g, "-") : "produit-sans-nom";
   
+  // Génération du slug (gestion du cas où le nom serait vide)
+  let slug = data.get("slug") as string;
+  if (!slug && name) {
+    slug = name.toLowerCase().replace(/ /g, "-");
+  } else if (!slug) {
+    slug = `product-${Date.now()}`; // Fallback ultime
+  }
+  
+  const imageUrl = (data.get("imageUrl") as string) || "/images/placeholder.jpg";
+  const categoryId = data.get("categoryId") as string;
+  const rangeId = data.get("rangeId") as string;
+
   const shortDescFr = data.get("shortDescFr") as string;
   const shortDescDe = data.get("shortDescDe") as string;
   const longDescFr = data.get("longDescFr") as string;
   const longDescDe = data.get("longDescDe") as string;
-  
-  const categoryId = data.get("categoryId") as string;
-  const rangeId = data.get("rangeId") as string;
 
+  // 2. Création en base de données
   await prisma.product.create({
     data: {
       slug,
       name,
-      // 2. On construit les objets JSON proprement
+      // Construction propre du JSON
       shortDesc: { 
         fr: shortDescFr || "", 
         de: shortDescDe || "",
-        en: shortDescFr || "" // Fallback
+        en: shortDescFr || "" 
       },
       longDesc: { 
         fr: longDescFr || "", 
         de: longDescDe || "",
-        en: longDescFr || "" // Fallback
+        en: longDescFr || "" 
       },
-      imageUrl: imageUrl,
-      categoryId: categoryId,
-      // Si rangeId est vide, on met null
-      rangeId: rangeId || null,
+      imageUrl,
+      categoryId,
+      // Si rangeId est vide ou "null", on envoie null à la DB
+      rangeId: rangeId && rangeId !== "null" ? rangeId : null,
     }
   });
 
