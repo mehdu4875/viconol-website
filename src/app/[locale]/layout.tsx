@@ -33,9 +33,13 @@ export default async function LocaleLayout({
       <body className="antialiased bg-viconol-dark text-white">
         {/* Fournisseur de traductions pour les composants clients (Navbar, etc.) */}
         <NextIntlClientProvider messages={messages}>
-          <AdminHiddenNavbar />
-          {/* On passe les catégories récupérées en haut à la Navbar */}
-          <Navbar locale={locale} categories={categories} />
+          
+          {/* CORRECTION : AdminHiddenNavbar doit ENTOURER la Navbar */}
+          <AdminHiddenNavbar>
+            {/* On passe les catégories récupérées en haut à la Navbar */}
+            <Navbar locale={locale} categories={categories} />
+          </AdminHiddenNavbar>
+          
           {children}
         </NextIntlClientProvider>
       </body>
