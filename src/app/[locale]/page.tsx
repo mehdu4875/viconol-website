@@ -8,14 +8,14 @@ export default function Home({ params: { locale } }: { params: { locale: string 
   const tFooter = useTranslations('Footer');
 
   // --- 🛠️ CONFIGURATION MAINTENANCE 🛠️ ---
-  // Mets "false" pour voir ton site normal, ou "true" pour afficher la page "En construction"
   const isMaintenanceMode = true; 
 
   if (isMaintenanceMode) {
     return (
       <main className="fixed inset-0 z-[9999] bg-[#050505] flex flex-col items-center justify-center text-center px-4">
-        {/* Logo */}
-        <div className="relative w-64 h-32 mb-8 animate-pulse">
+        
+        {/* Logo agrandi (w-80 sur mobile, w-[500px] sur PC) */}
+        <div className="relative w-80 h-40 md:w-[500px] md:h-[250px] mb-12 animate-pulse">
           <Image 
             src="/images/logo.png" 
             alt="VICONÖL Logo" 
@@ -25,29 +25,26 @@ export default function Home({ params: { locale } }: { params: { locale: string 
           />
         </div>
 
-        {/* Titre */}
-        <h1 className="text-4xl md:text-6xl font-black text-white mb-6 tracking-tighter uppercase">
-          VICONÖL
-        </h1>
+        {/* (Le titre H1 VICONÖL a été supprimé ici) */}
 
         {/* Message EN ALLEMAND */}
         <div className="max-w-md space-y-4">
-          <h2 className="text-xl md:text-2xl text-viconol-primary font-bold uppercase tracking-widest">
+          <h2 className="text-xl md:text-3xl text-viconol-primary font-bold uppercase tracking-widest">
             Webseite im Aufbau
           </h2>
-          <p className="text-gray-400 font-light leading-relaxed">
+          <p className="text-gray-400 font-light leading-relaxed text-lg">
             Wir arbeiten derzeit an unserem neuen Online-Erlebnis.
-            Besuchen Sie uns bald wieder, um unsere Produkte zu entdecken.
+            Besuchen Sie uns bald wieder.
           </p>
         </div>
 
         {/* Petit trait décoratif */}
-        <div className="w-16 h-1 bg-viconol-primary mt-10 rounded-full"></div>
+        <div className="w-24 h-1 bg-viconol-primary mt-12 rounded-full opacity-50"></div>
       </main>
     );
   }
 
-  // --- 🌟 TON SITE NORMAL (Caché si maintenance = true) 🌟 ---
+  // --- 🌟 TON SITE NORMAL 🌟 ---
   return (
     <main className="flex flex-col min-h-screen bg-viconol-dark">
       
