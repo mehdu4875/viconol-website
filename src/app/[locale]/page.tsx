@@ -30,14 +30,14 @@ export default function Home({ params: { locale } }: { params: { locale: string 
           VICONÖL
         </h1>
 
-        {/* Message */}
+        {/* Message EN ALLEMAND */}
         <div className="max-w-md space-y-4">
           <h2 className="text-xl md:text-2xl text-viconol-primary font-bold uppercase tracking-widest">
-            Site en préparation
+            Webseite im Aufbau
           </h2>
           <p className="text-gray-400 font-light leading-relaxed">
-            Nous construisons actuellement notre nouvelle expérience en ligne.
-            Revenez très bientôt pour découvrir nos produits.
+            Wir arbeiten derzeit an unserem neuen Online-Erlebnis.
+            Besuchen Sie uns bald wieder, um unsere Produkte zu entdecken.
           </p>
         </div>
 
