@@ -12,6 +12,7 @@ export default async function ProductsPage({
 }) {
   const t = await getTranslations({locale, namespace: 'Products'});
 
+  // --- LOGIQUE DE FILTRE ---
   const whereClause: any = {};
   if (searchParams.cat) whereClause.categoryId = searchParams.cat;
   if (searchParams.q) {
@@ -21,6 +22,7 @@ export default async function ProductsPage({
     ];
   }
 
+  // --- RÉCUPÉRATION DES PRODUITS ET CATÉGORIES ---
   const products = await prisma.product.findMany({
     where: whereClause,
     include: { category: true, range: true },
@@ -33,22 +35,25 @@ export default async function ProductsPage({
     ? categories.find(c => c.id === searchParams.cat)?.name 
     : null;
     
-  const getCatName = (jsonName: any) => jsonName[locale] || jsonName['fr'] || "";
+  const getCatName = (jsonName: any) => {
+    if (!jsonName) return "";
+    return jsonName[locale] || jsonName['fr'] || "";
+  };
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] pt-32 pb-20">
       <div className="container mx-auto px-6">
         
-        {/* En-tête */}
+        {/* En-tête de page responsive */}
         <div className="flex flex-col md:flex-row justify-between items-end mb-12 border-b border-white/10 pb-6">
-          <div>
-            <h1 className="text-4xl md:text-5xl font-black text-white uppercase tracking-tighter mb-2">
+          <div className="w-full">
+            <h1 className="text-4xl md:text-5xl font-black text-white uppercase tracking-tighter mb-2 leading-tight">
               {searchParams.q 
                 ? t('search_results', { query: searchParams.q }) 
                 : t('title')}
             </h1>
             
-            <p className="text-gray-400">
+            <p className="text-gray-400 font-light">
               {searchParams.q 
                 ? t('found_products', { count: products.length })
                 : currentCategoryName 
@@ -59,7 +64,7 @@ export default async function ProductsPage({
           </div>
         </div>
 
-        {/* Grille */}
+        {/* Grille de produits : 1 col sur mobile, 2 sur tablette, 4 sur PC */}
         {products.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {products.map((product) => (
@@ -67,7 +72,7 @@ export default async function ProductsPage({
             ))}
           </div>
         ) : (
-          <div className="flex flex-col items-center justify-center py-20 text-center border border-dashed border-white/10 rounded-sm">
+          <div className="flex flex-col items-center justify-center py-24 text-center border border-dashed border-white/10 rounded-sm bg-white/5">
             <SearchX className="w-16 h-16 text-viconol-metal mb-4" />
             <h3 className="text-2xl font-bold text-white mb-2">{t('no_results')}</h3>
             <p className="text-gray-500">{t('try_another_keyword')}</p>

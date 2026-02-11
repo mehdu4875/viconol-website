@@ -1,16 +1,9 @@
-import { Inter } from "next/font/google";
-import "../globals.css"; // Assure-toi que le chemin est bon (souvent ../globals.css ou ./globals.css selon ton dossier)
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
-import Navbar from "@/components/Navbar";
-import AdminHiddenNavbar from "@/components/AdminHiddenNavbar"; // <--- IMPORT AJOUTÉ
-
-const inter = Inter({ subsets: ["latin"] });
-
-export const metadata = {
-  title: "VICONÖL Lubricants",
-  description: "L'excellence allemande en matière de lubrifiants.",
-};
+import { notFound } from 'next/navigation';
+import Navbar from '@/components/Navbar';
+import AdminHiddenNavbar from '@/components/AdminHiddenNavbar';
+import { prisma } from '@/lib/db'; // Import de Prisma pour les catégories
 
 export default async function LocaleLayout({
   children,
@@ -19,28 +12,31 @@ export default async function LocaleLayout({
   children: React.ReactNode;
   params: { locale: string };
 }) {
-  // Récupération des messages de traduction côté serveur
+  // On définit les langues supportées directement ici pour éviter l'erreur d'import
+  const locales = ['fr', 'en', 'de'];
+  
+  // Vérification de la langue
+  if (!locales.includes(locale as any)) {
+    notFound();
+  }
+
+  // Chargement des messages de traduction
   const messages = await getMessages();
 
+  // RÉCUPÉRATION DES CATÉGORIES (Côté Serveur pour la Navbar)
+  const categories = await prisma.category.findMany({
+    orderBy: { slug: 'asc' }
+  });
+
   return (
-    <html lang={locale}>
-      <body className={inter.className}>
+    <html lang={locale} className="scroll-smooth">
+      <body className="antialiased bg-viconol-dark text-white">
+        {/* Fournisseur de traductions pour les composants clients (Navbar, etc.) */}
         <NextIntlClientProvider messages={messages}>
-          
-          {/* On entoure la Navbar pour qu'elle disparaisse sur l'Admin */}
-          <AdminHiddenNavbar>
-            <Navbar locale={locale} />
-          </AdminHiddenNavbar>
-
-          {/* Le contenu de la page (Admin ou Site Public) */}
+          <AdminHiddenNavbar />
+          {/* On passe les catégories récupérées en haut à la Navbar */}
+          <Navbar locale={locale} categories={categories} />
           {children}
-
-          {/* Si tu as un Footer, entoure-le aussi ! 
-          <AdminHiddenNavbar>
-            <Footer />
-          </AdminHiddenNavbar> 
-          */}
-
         </NextIntlClientProvider>
       </body>
     </html>
