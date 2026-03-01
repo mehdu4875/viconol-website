@@ -3,43 +3,93 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 255, 255, 255;
+  --viconol-primary: #d4af37;
+  --viconol-dark: #0a0a0a;
+  --viconol-metal: #8e8e8e;
+}
+
+/* Optimisation globale */
+html {
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Forcer le chargement des polices sans blocage */
+* {
+  font-display: swap;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background-color: #050505; /* viconol-dark */
-  /* Reflets dorés subtils en fond */
-  background-image: 
-    radial-gradient(at 0% 0%, rgba(212, 175, 55, 0.08) 0px, transparent 50%),
-    radial-gradient(at 100% 100%, rgba(184, 134, 11, 0.05) 0px, transparent 50%);
-  background-attachment: fixed;
-  min-height: 100vh;
+  overflow-x: hidden;
 }
 
-
-html {
-  scroll-behavior: smooth; /* <--- C'est la ligne magique ! */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
-:root {
-  --foreground-rgb: 255, 255, 255;
+/* --- ANIMATIONS OPTIMISÉES GPU --- */
+
+@keyframes slow-zoom {
+  0% { transform: scale(1.05) translateZ(0); }
+  100% { transform: scale(1.12) translateZ(0); }
+}
+.animate-slow-zoom {
+  animation: slow-zoom 20s infinite alternate ease-in-out;
+  will-change: transform;
 }
 
-/* ... le reste ne change pas ... */
+@keyframes fade-in-up {
+  from { 
+    opacity: 0; 
+    transform: translateY(20px) translateZ(0); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0) translateZ(0); 
+  }
+}
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s ease-out forwards;
+}
 
-/* Scrollbar Dorée */
-::-webkit-scrollbar {
-  width: 8px;
+/* Shine effect optimisé avec masque */
+.logo-shine-overlay {
+  background: linear-gradient(
+    to right, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0) 40%, 
+    rgba(255, 255, 255, 0.4) 50%, 
+    rgba(255, 255, 255, 0) 60%, 
+    transparent 100%
+  );
+  -webkit-mask-image: url('/images/logo.png');
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-image: url('/images/logo.png');
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  animation: logo-shine 5s infinite ease-in-out;
+  will-change: transform;
 }
-::-webkit-scrollbar-track {
-  background: #050505; 
+
+@keyframes logo-shine {
+  0% { transform: translateX(-100%) translateZ(0); }
+  25% { transform: translateX(100%) translateZ(0); }
+  100% { transform: translateX(100%) translateZ(0); }
 }
-::-webkit-scrollbar-thumb {
-  background: #2a2a2a; 
-  border-radius: 4px;
-  border: 1px solid #333;
+
+.text-outline-primary {
+  -webkit-text-stroke: 1px var(--viconol-primary);
+  color: transparent;
 }
-::-webkit-scrollbar-thumb:hover {
-  background: #D4AF37; /* Devient or au survol */
-}
+
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }

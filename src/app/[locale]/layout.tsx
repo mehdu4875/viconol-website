@@ -1,46 +1,36 @@
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import "../globals.css";
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
-import { notFound } from 'next/navigation';
-import Navbar from '@/components/Navbar';
-import AdminHiddenNavbar from '@/components/AdminHiddenNavbar';
-import { prisma } from '@/lib/db'; // Import de Prisma pour les catégories
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer"; // <--- Import
+import { prisma } from "@/lib/db";
 
-export default async function LocaleLayout({
+const inter = Inter({ subsets: ["latin"] });
+
+export const metadata: Metadata = {
+  title: "VICONÖL | Premium Lubricants",
+  description: "German High-Performance Lubricants",
+};
+
+export default async function RootLayout({
   children,
   params: { locale }
 }: {
   children: React.ReactNode;
   params: { locale: string };
 }) {
-  // On définit les langues supportées directement ici pour éviter l'erreur d'import
-  const locales = ['fr', 'en', 'de'];
-  
-  // Vérification de la langue
-  if (!locales.includes(locale as any)) {
-    notFound();
-  }
-
-  // Chargement des messages de traduction
   const messages = await getMessages();
-
-  // RÉCUPÉRATION DES CATÉGORIES (Côté Serveur pour la Navbar)
-  const categories = await prisma.category.findMany({
-    orderBy: { slug: 'asc' }
-  });
+  const categories = await prisma.category.findMany();
 
   return (
-    <html lang={locale} className="scroll-smooth">
-      <body className="antialiased bg-viconol-dark text-white">
-        {/* Fournisseur de traductions pour les composants clients (Navbar, etc.) */}
+    <html lang={locale}>
+      <body className={`${inter.className} bg-viconol-dark`}>
         <NextIntlClientProvider messages={messages}>
-          
-          {/* CORRECTION : AdminHiddenNavbar doit ENTOURER la Navbar */}
-          <AdminHiddenNavbar>
-            {/* On passe les catégories récupérées en haut à la Navbar */}
-            <Navbar locale={locale} categories={categories} />
-          </AdminHiddenNavbar>
-          
+          <Navbar locale={locale} categories={categories} />
           {children}
+          <Footer locale={locale} /> {/* <--- FOOTER ICI */}
         </NextIntlClientProvider>
       </body>
     </html>

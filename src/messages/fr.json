@@ -23,38 +23,33 @@
     "history_title": "L'Excellence",
     "history_made_in": "Made in Germany",
     "history_text_1": "Depuis sa fondation, VICONÖL s'est imposée comme une référence incontournable dans le domaine des lubrifiants haute performance. Née de la rigueur de l'ingénierie allemande, notre marque incarne la fusion entre tradition industrielle et innovation chimique.",
-    "history_text_2": "Chaque goutte de nos huiles est le résultat d'années de recherche en laboratoire pour garantir une protection moteur absolue, même dans les conditions les plus extrêmes.",
-    "history_stats_countries": "PAYS EXPORTÉS",
-    "history_stats_quality": "QUALITÉ CERTIFIÉE",
-    "contact_header": "RESTONS CONNECTÉS",
-    "contact_title": "Contactez-nous",
-    "contact_cards": {
-      "address_title": "Siège Social",
-      "address_text": "Industriestraße 45, Berlin",
-      "support_title": "Service Client",
-      "hours_title": "Horaires",
-      "hours_text": "Lun - Ven : 09:00 - 18:00"
-    }
+    "history_text_2": "Chaque goutte de nos huiles est le résultat d'un processus de raffinage méticuleux et d'une sélection rigoureuse d'additifs."
   },
   "Products": {
-    "title": "NOS LUBRIFIANTS",
-    "filter": "Filtrer par",
-    "all_products": "Tout voir",
-    "count_catalogue": "{count} produits au catalogue",
-    "search_results": "Résultats : \"{query}\"",
-    "found_products": "{count} produit(s) trouvé(s)",
-    "category_count": "{category} — {count} produit(s)",
-    "no_results": "Aucun résultat trouvé",
-    "try_another_keyword": "Essayez avec un autre mot-clé (ex: 5W30, Huile...)",
-    "view_product": "VOIR LE PRODUIT",
-    "discover": "DÉCOUVRIR"
+  "title": "CATALOGUE",
+  "count_catalogue": "{count} produits au catalogue",
+  "search_results": "Résultats : \"{query}\"",
+  "found_products": "{count} produit(s) trouvé(s)",
+  "category_count": "{category} — {count} produit(s)",
+  "no_results": "Aucun résultat trouvé",
+  "try_another_keyword": "Essayez avec un autre mot-clé (ex: 5W30, Huile...)",
+  "view_product": "VOIR LE PRODUIT",
+  "discover": "DÉCOUVRIR",
+  "view_details": "Voir les détails",
+  "range_label": "Gamme",
+  "default_category": "Produit"
+
   },
   "ProductDetail": {
     "protection": "Protection Moteur",
     "performance": "Performance",
     "datasheet": "Fiche Technique",
     "datasheet_unavailable": "Fiche Indisponible",
-    "contact_us": "Nous Contacter"
+    "contact_us": "Nous Contacter",
+    "description": "Description",
+    "documents": "Documents & Téléchargements",
+    "contactSales": "Contactez un expert",
+    "backToProducts": "Retour aux produits"
   },
   "Search": {
     "placeholder": "Rechercher un produit (ex: 5W30, Hydraulique...)",
@@ -70,18 +65,17 @@
     "form_message": "Votre Message",
     "send_btn": "ENVOYER LE MESSAGE",
     "address_title": "NOTRE SIÈGE",
-    "phone": "Téléphone",
-    "email": "Email"
+    "address_text": "Am Industriegelände, Allemagne",
+    "support_title": "SUPPORT E-MAIL",
+    "hours_title": "HORAIRES"
   },
   "Footer": {
     "rights": "Tous droits réservés.",
-    "privacy": "Politique de confidentialité",
-    "terms": "Mentions légales",
-    "description": "Leader des lubrifiants haute performance."
-  },
-  "NotFound": {
-    "title": "PAGE INTROUVABLE",
-    "description": "La page que vous cherchez n'existe pas.",
-    "back_home": "RETOUR À L'ACCUEIL"
+    "description": "Lubrifiants haute performance de technologie allemande pour l'automobile et l'industrie.",
+    "quick_links": "LIENS RAPIDES",
+    "legal": "LÉGAL",
+    "privacy": "Confidentialité",
+    "terms": "CGV",
+    "impressum": "Impressum"
   }
 }

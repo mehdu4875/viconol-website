@@ -1,8 +1,9 @@
 import { getProductBySlug } from "@/actions/product-actions";
 import { notFound } from "next/navigation";
-import { Download, ShieldCheck, Zap } from "lucide-react";
 import Image from "next/image";
 import { getTranslations } from 'next-intl/server'; 
+import ProductAccordion from "@/components/ProductAccordion";
+import StickyProductBar from "@/components/StickyProductBar";
 
 export default async function ProductDetail({ params }: { params: { slug: string, locale: string } }) {
   const product = await getProductBySlug(params.slug);
@@ -16,77 +17,89 @@ export default async function ProductDetail({ params }: { params: { slug: string
     return field[params.locale] || field['en'] || field['fr'] || "";
   };
 
+  // Préparation des labels traduits pour le composant Client
+  const accordionLabels = {
+    protection: t('protection'),
+    performance: t('performance'),
+    datasheet: t('datasheet'),
+    datasheet_unavailable: t('datasheet_unavailable'),
+    contact_us: t('contact_us'),
+    // Remplacement des textes en dur par les clés de traduction
+    description_title: t('description'),
+    specs_title: t('performance_title'),
+    docs_title: t('documents_title')
+  };
+
   return (
-    // CORRECTION ICI : Changement de 'py-12' à 'pt-36 pb-20' pour éviter que la Navbar cache le contenu
-    <div className="min-h-screen bg-viconol-dark pt-36 pb-20 text-white">
-      <div className="container mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+    <div className="min-h-screen bg-viconol-dark pt-24 pb-32 md:pb-20 md:pt-36 text-white">
+      <div className="container mx-auto px-4 md:px-6">
+        
+        {/* Layout : Colonne simple sur Mobile / 2 Colonnes sur PC */}
+        <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 lg:gap-16 items-start">
           
-          <div className="bg-viconol-panel rounded-sm p-12 flex justify-center border border-white/10 relative overflow-hidden group">
-            <div className="absolute inset-0 bg-viconol-primary/20 blur-[100px] opacity-20 group-hover:opacity-40 transition-opacity"></div>
-            <Image 
-              src={product.imageUrl} 
-              alt={product.name} 
-              width={400} 
-              height={400} 
-              className="object-contain relative z-10 drop-shadow-2xl"
-            />
+          {/* COLONNE GAUCHE : IMAGE */}
+          <div className="w-full lg:sticky lg:top-32">
+            <div className="bg-[#121212] rounded-2xl p-8 md:p-12 flex justify-center border border-white/5 relative overflow-hidden group shadow-2xl">
+              <div className="absolute inset-0 bg-gradient-radial from-viconol-primary/10 to-transparent opacity-50"></div>
+              
+              <Image 
+                src={product.imageUrl || "/images/placeholder.jpg"} 
+                alt={product.name} 
+                width={500} 
+                height={500} 
+                className="object-contain relative z-10 drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)] transition-transform duration-700 group-hover:scale-105"
+                priority
+              />
+            </div>
           </div>
 
-          <div>
-            <div className="flex items-center gap-2 mb-4">
-              <span className="text-viconol-primary font-bold uppercase tracking-widest text-xs border border-viconol-primary/30 px-3 py-1 rounded-full bg-viconol-primary/10">
+          {/* COLONNE DROITE : INFO & ACCORDÉONS */}
+          <div className="w-full">
+            
+            {/* Badges Catégorie */}
+            <div className="flex flex-wrap items-center gap-3 mb-6">
+              <span className="text-viconol-primary font-bold uppercase tracking-[0.2em] text-[10px] md:text-xs border border-viconol-primary/30 px-3 py-1.5 rounded-full bg-viconol-primary/5">
                 {getDbVal(product.category.name)}
               </span>
               {product.range && (
-                <span className="text-slate-400 font-bold uppercase tracking-widest text-xs">
+                <span className="text-gray-500 font-bold uppercase tracking-[0.2em] text-[10px] md:text-xs px-2">
                   — {getDbVal(product.range.name)}
                 </span>
               )}
             </div>
 
-            <h1 className="text-5xl font-black text-white mb-6 tracking-tight">{product.name}</h1>
+            {/* Titre Produit */}
+            <h1 className="text-3xl md:text-5xl font-black text-white mb-4 tracking-tighter leading-tight">
+              {product.name}
+            </h1>
             
-            <p className="text-lg text-slate-300 mb-10 leading-relaxed font-light border-l-4 border-viconol-primary pl-6">
-              {getDbVal(product.longDesc)}
-            </p>
+            {/* Description Courte */}
+            {product.shortDesc && (
+               <p className="text-gray-400 text-sm md:text-base font-light mb-8 leading-relaxed">
+                 {getDbVal(product.shortDesc)}
+               </p>
+            )}
 
-            <div className="grid grid-cols-2 gap-4 mb-10">
-              <div className="flex items-center gap-4 p-5 bg-viconol-panel rounded-sm border border-white/5 hover:border-viconol-primary/30 transition-colors">
-                <ShieldCheck className="text-viconol-primary w-8 h-8" />
-                <span className="font-bold text-white">{t('protection')}</span>
-              </div>
-              <div className="flex items-center gap-4 p-5 bg-viconol-panel rounded-sm border border-white/5 hover:border-viconol-primary/30 transition-colors">
-                <Zap className="text-viconol-primary w-8 h-8" />
-                <span className="font-bold text-white">{t('performance')}</span>
-              </div>
-            </div>
+            {/* Accordéons avec labels traduits */}
+            <ProductAccordion 
+              description={getDbVal(product.longDesc)}
+              pdfUrl={product.pdfUrl}
+              contactUrl={`/${params.locale}#contact`}
+              labels={accordionLabels}
+            />
 
-            <div className="flex flex-col sm:flex-row gap-4">
-              {product.pdfUrl ? (
-                <a 
-                  href={product.pdfUrl} 
-                  target="_blank"
-                  className="flex items-center justify-center gap-2 bg-viconol-primary text-white px-8 py-4 rounded-sm font-bold hover:bg-yellow-600 transition-all shadow-lg hover:shadow-viconol-primary/25"
-                >
-                  <Download className="w-5 h-5" />
-                  {t('datasheet')}
-                </a>
-              ) : (
-                <button disabled className="flex items-center justify-center gap-2 bg-white/10 text-white/50 px-8 py-4 rounded-sm font-bold cursor-not-allowed">
-                   <Download className="w-5 h-5" />
-                   {t('datasheet_unavailable')}
-                </button>
-              )}
-              
-              <a href={`/${params.locale}#contact`} className="flex items-center justify-center gap-2 border border-white/20 text-white px-8 py-4 rounded-sm font-bold hover:bg-white/5 transition-colors">
-                {t('contact_us')}
-              </a>
-            </div>
           </div>
 
         </div>
       </div>
+
+      {/* Barre d'action fixe mobile */}
+      <StickyProductBar 
+        pdfUrl={product.pdfUrl}
+        contactUrl={`/${params.locale}#contact`}
+        productName={product.name}
+      />
+
     </div>
   );
 }
