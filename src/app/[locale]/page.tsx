@@ -11,7 +11,7 @@ export default function Home({ params: { locale } }: { params: { locale: string 
   const tContact = useTranslations('Contact');
   const tFooter = useTranslations('Footer');
 
-  const isMaintenanceMode = true;
+  const isMaintenanceMode = false;
 
   if (isMaintenanceMode) {
     return (
