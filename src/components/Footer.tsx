@@ -58,7 +58,7 @@ export default function Footer({ locale }: { locale: string }) {
           </div>
 
           {/* 3. LÉGAL */}
-          <div>
+          <div className="hidden">
             <button 
               onClick={() => toggle('legal')}
               className="w-full md:cursor-default flex items-center justify-between py-4 md:py-0 mb-0 md:mb-6 border-b border-white/5 md:border-none"
@@ -67,9 +67,8 @@ export default function Footer({ locale }: { locale: string }) {
               <ChevronDown className={`w-4 h-4 md:hidden transition-transform ${openSection === 'legal' ? 'rotate-180' : ''}`} />
             </button>
             <ul className={`space-y-4 pt-4 md:pt-0 overflow-hidden transition-all duration-300 ${openSection === 'legal' ? 'max-h-40' : 'max-h-0 md:max-h-full opacity-0 md:opacity-100'}`}>
-              <li><Link href="#" className="text-gray-500 hover:text-viconol-primary text-sm transition-colors">{t('impressum')}</Link></li>
-              <li><Link href="#" className="text-gray-500 hover:text-viconol-primary text-sm transition-colors">{t('privacy')}</Link></li>
-              <li><Link href="#" className="text-gray-500 hover:text-viconol-primary text-sm transition-colors">{t('terms')}</Link></li>
+              <li><Link href={`/${locale}/impressum`} className="text-gray-500 hover:text-viconol-primary text-sm transition-colors">{t('impressum')}</Link></li>
+              <li><Link href={`/${locale}/privacy`} className="text-gray-500 hover:text-viconol-primary text-sm transition-colors">{t('privacy')}</Link></li>
             </ul>
           </div>
 
@@ -91,7 +90,7 @@ export default function Footer({ locale }: { locale: string }) {
         {/* BAS DU FOOTER */}
         <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-gray-600 text-[10px] tracking-widest uppercase">
-            © 2024 VICONÖL LUBRICANTS. {t('rights')}
+            © 2026 VICONÖL LUBRICANTS. {t('rights')}
           </p>
           <div className="flex items-center gap-6 opacity-30 grayscale contrast-125">
              <span className="text-[8px] font-bold border border-white px-2 py-1">ISO 9001</span>

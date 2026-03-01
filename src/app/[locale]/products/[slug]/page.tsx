@@ -24,10 +24,10 @@ export default async function ProductDetail({ params }: { params: { slug: string
     datasheet: t('datasheet'),
     datasheet_unavailable: t('datasheet_unavailable'),
     contact_us: t('contact_us'),
-    // Remplacement des textes en dur par les clés de traduction
+    // Utiliser les clés existantes dans `ProductDetail`
     description_title: t('description'),
-    specs_title: t('performance_title'),
-    docs_title: t('documents_title')
+    specs_title: t('performance'),
+    docs_title: t('documents')
   };
 
   return (
