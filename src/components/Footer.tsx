@@ -78,11 +78,11 @@ export default function Footer({ locale }: { locale: string }) {
              <span className="text-[10px] font-black tracking-[0.2em] uppercase text-viconol-primary block mb-4">Export Global</span>
              <div className="flex items-center gap-3 text-gray-400 mb-4">
                 <Mail className="w-4 h-4 text-viconol-primary" />
-                <span className="text-sm">info@viconol.de</span>
+                <span className="text-sm">info@viconol.com</span>
              </div>
              <div className="flex items-center gap-3 text-gray-400">
                 <Globe className="w-4 h-4 text-viconol-primary" />
-                <span className="text-sm">www.viconol.de</span>
+                <span className="text-sm">www.viconol.com</span>
              </div>
           </div>
 
