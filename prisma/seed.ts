@@ -145,7 +145,6 @@ async function main() {
       // ----------------------------------------------------
       // GAMME EXTRA FULL (VL)
       // ----------------------------------------------------
-      { name: "EXTRA FULL EC 0W-30 C2", slug: "extra-full-ec-0w30-c2", imageUrl: "/images/products/fut.png", rangeId: rExtraFull.id, categoryId: catVL.id, shortDesc: "100% Synthétique - C2 (DPF)", longDesc: "Huile moteur totalement synthétique. Faible viscosité, économies carburant. ACEA C2-12." },
       { name: "EXTRA FULL C4 5W-30", slug: "extra-full-c4-5w30", imageUrl: "/images/products/fut.png", rangeId: rExtraFull.id, categoryId: catVL.id, shortDesc: "100% Synthèse - Renault DPF", longDesc: "Spécial Renault DPF (RN0720). ACEA C4." },
       { name: "EXTRA FULL F 5W-30 913D", slug: "extra-full-f-5w30-913d", imageUrl: "/images/products/fut.png", rangeId: rExtraFull.id, categoryId: catVL.id, shortDesc: "100% Synthèse - Ford", longDesc: "Recommandé pour Ford Diesel/Essence (913D). Economie carburant." },
       { name: "EXTRA FULL C3 5W-30 504/7", slug: "extra-full-c3-5w30-504-7", imageUrl: "/images/products/fut.png", rangeId: rExtraFull.id, categoryId: catVL.id, shortDesc: "100% Synthèse - VAG", longDesc: "Huile PAO pour Groupe VAG. VW 504.00/507.00." },
@@ -157,9 +156,6 @@ async function main() {
       { name: "EXTRA FULL FREECAR 5W-50", slug: "extra-full-freecar-5w50", imageUrl: "/images/products/fut.png", rangeId: rExtraFull.id, categoryId: catVL.id, shortDesc: "100% Synthèse - Sport/Voiturettes", longDesc: "Grande stabilité thermique. ACEA A3/B4." },
       { name: "EXTRA FULL C3 KTX 0W-40", slug: "extra-full-c3-ktx-0w40", imageUrl: "/images/products/fut.png", rangeId: rExtraFull.id, categoryId: catVL.id, shortDesc: "100% Synthèse - Climats Extrêmes", longDesc: "ACEA C3, Porsche A40, MB 229.52." },
       { name: "EXTRA FULL C3 OEM 547 5W-30", slug: "extra-full-c3-oem-547", imageUrl: "/images/products/fut.png", rangeId: rExtraFull.id, categoryId: catVL.id, shortDesc: "100% Synthèse - VAG Premium", longDesc: "PAO + Grp III. VW 504/507." },
-      { name: "EXTRA FULL DRACO 0W-20", slug: "extra-full-draco-0w20", imageUrl: "/images/products/fut.png", rangeId: rExtraFull.id, categoryId: catVL.id, shortDesc: "100% Synthèse - Ultra Fluide", longDesc: "ACEA A3/B4, ILSAC GF-5. Economies carburant." },
-      { name: "EXTRA FULL C3 0W-30 504/7", slug: "extra-full-c3-0w30-5047", imageUrl: "/images/products/fut.png", rangeId: rExtraFull.id, categoryId: catVL.id, shortDesc: "100% Synthèse - VAG 0W30", longDesc: "PAO pour VW 504.00/507.00." },
-      { name: "EXTRA FULL BAVO6 0W-30", slug: "extra-full-bavo6-0w30", imageUrl: "/images/products/fut.png", rangeId: rExtraFull.id, categoryId: catVL.id, shortDesc: "100% Synthèse - Long Life FE", longDesc: "ACEA A5/B5, VW 503/506." },
       { name: "EXTRA FULL DRACO 0W-40", slug: "extra-full-draco-0w40", imageUrl: "/images/products/fut.png", rangeId: rExtraFull.id, categoryId: catVL.id, shortDesc: "100% Synthèse - Puissance", longDesc: "ACEA A3/B4, Porsche A40, MB 229.5." },
       { name: "EXTRA FULL C2/C3 547 5W-30", slug: "extra-full-c2-c3-547", imageUrl: "/images/products/fut.png", rangeId: rExtraFull.id, categoryId: catVL.id, shortDesc: "100% Synthèse - Polyvalente", longDesc: "ACEA C2/C3, VW 504/507, Dexos 2." },
       { name: "EXTRA FULL C2/C3 5W-30", slug: "extra-full-c2-c3-gen", imageUrl: "/images/products/fut.png", rangeId: rExtraFull.id, categoryId: catVL.id, shortDesc: "100% Synthèse - Universelle", longDesc: "ACEA C2/C3, PSA B71 2290, Dexos 2." },
@@ -313,7 +309,135 @@ async function main() {
       { name: "IND-CUT ENTIERE", slug: "ind-cut-entiere", imageUrl: "/images/products/fut.png", rangeId: rIndusMetal.id, categoryId: catIndus.id, shortDesc: "Huile de Coupe Entière", longDesc: "Usinage difficile." },
       { name: "IND-GLISS 68/220", slug: "ind-gliss", imageUrl: "/images/products/fut.png", rangeId: rIndusDivers.id, categoryId: catIndus.id, shortDesc: "Huile Glissières", longDesc: "Machines-outils." },
       { name: "IND-THERM 32", slug: "ind-therm", imageUrl: "/images/products/fut.png", rangeId: rIndusDivers.id, categoryId: catIndus.id, shortDesc: "Fluide Caloporteur", longDesc: "Transfert thermique." },
-      { name: "IND-TRANS 22", slug: "ind-trans", imageUrl: "/images/products/fut.png", rangeId: rIndusDivers.id, categoryId: catIndus.id, shortDesc: "Huile Transformateur", longDesc: "Isolant électrique." }
+
+      { name: "IND-TRANS 22", slug: "ind-trans", imageUrl: "/images/products/fut.png", rangeId: rIndusDivers.id, categoryId: catIndus.id, shortDesc: "Huile Transformateur", longDesc: "Isolant électrique." },
+      // --- NOUVEAUX PRODUITS VICONOL ---
+      { 
+        name: "VICONOL 0W-16", 
+        slug: "viconol-0w16", 
+        imageUrl: "/images/products/fut.png", 
+        rangeId: rExtraFull.id, 
+        categoryId: catVL.id, 
+        shortDesc: "API: SN, JASO GLV-1, ILSAC GF-6B", 
+        longDesc: "API: SN, JASO GLV-1, HIBRI PLUS, ILSAC GF-6B, NEW CON PAO, HONDA, TOYOTA, NISSAN" 
+      },
+      { 
+        name: "VICONOL 0W-20", 
+        slug: "viconol-0w20", 
+        imageUrl: "/images/products/fut.png", 
+        rangeId: rExtraFull.id, 
+        categoryId: catVL.id, 
+        shortDesc: "API: SN Plus-RC, ILSAC GF-6A", 
+        longDesc: "API: SN Plus-RC, API: SP/RC, ILSAC: GF-6A, ILSAC: GF-5, BMW LL-17 FE+, BMW LL-14 FE+, Ford WSS-M2C947-A/B1, WSS-M2C952-A1, WSS-M2C962-A1, FIAT 9.55535-GSX (Fiat, alfa Romeo y Lancia), CHRYSLER MS-12145, MB 229.72, MB 229.71, Vauxhall/GM OPEL: OV0401547, GM DEXOS D, VOLVO VCC RBS0-2AE" 
+      },
+      { 
+        name: "VICONOL 0W-30 C2", 
+        slug: "viconol-0w30-c2", 
+        imageUrl: "/images/products/fut.png", 
+        rangeId: rExtraFull.id, 
+        categoryId: catVL.id, 
+        shortDesc: "ACEA C2, API: SN, FORD WSS-M2C950-A", 
+        longDesc: "ACEA C2, API: SN, FORD WSS-M2C950-A, JAGUAR & LAND ROVER ST JLR.03.5007, Mazda, Toyota, Honda y Subaru" 
+      },
+      { 
+        name: "VICONOL 0W-40 C3", 
+        slug: "viconol-0w40-c3", 
+        imageUrl: "/images/products/fut.png", 
+        rangeId: rExtraFull.id, 
+        categoryId: catVL.id, 
+        shortDesc: "ACEA C3, API SN/CF, VW 502.00", 
+        longDesc: "ACEA C3, API SN/CF, VW 502.00 / 505.00 / 505.01, MB 229.51, BMW Long Life-04, Porsche A40" 
+      },
+      { 
+        name: "VICONOL 5W-20 ACEA C5", 
+        slug: "viconol-5w20-acea-c5", 
+        imageUrl: "/images/products/fut.png", 
+        rangeId: rExtraFull.id, 
+        categoryId: catVL.id, 
+        shortDesc: "ACEA C5, ACEA A1/B1, API: SN", 
+        longDesc: "ACEA C5, ACEA A1/B1, API: SN, FORD WSS-M2C948-B, FORD WSS-M2C925-A, FORD WSS-M2C925-B, CHRYSLER MS 6395, FIAT 9.55535-CR1, JAGUAR & LAND ROVER ST JLR.03.5004" 
+      },
+      { 
+        name: "VICONOL 5W-30 C2/C3", 
+        slug: "viconol-5w30-c2-c3", 
+        imageUrl: "/images/products/fut.png", 
+        rangeId: rExtraFull.id, 
+        categoryId: catVL.id, 
+        shortDesc: "ACEA C2/C3, VW 504/507, API SN/CF", 
+        longDesc: "ACEA C2/C3, VW 504.00/507.00, API SN/CF, MB 229.31, MB 229.51, MB 229.52, GM Opel dexos 2, BMW Long Life-04, PSA B71 2290, Porsche C30, Fiat 9.55535-DS1, Fiat 9.55535-GS1" 
+      },
+      { 
+        name: "VICONOL 5W-40 C3", 
+        slug: "viconol-5w40-c3", 
+        imageUrl: "/images/products/fut.png", 
+        rangeId: rExtraFull.id, 
+        categoryId: catVL.id, 
+        shortDesc: "ACEA C3, VW 502.00/505.00/505.01", 
+        longDesc: "ACEA C3, VW 502.00/505.00/505.01, API SN/CF, MB 229.52, BMW Long Life-04, CHRYSLER MS-12991, RENAULT RN0710-RN 0700, Porsche A40, FORD WSS-M2C917-A, Fiat 9.55535-GH2, 9.55535-S2, 9.55535-T2" 
+      },
+      { 
+        name: "VICONOL 10W-30", 
+        slug: "viconol-10w30", 
+        imageUrl: "/images/products/fut.png", 
+        rangeId: rExtraBlitz.id, 
+        categoryId: catVL.id, 
+        shortDesc: "ACEA A3/B3/B4, API SN/CF", 
+        longDesc: "ACEA A3/B3/B4, API SN/CF, MB 229.1, VW 501.01/505.00" 
+      },
+      { 
+        name: "VICONOL 10W-40", 
+        slug: "viconol-10w40", 
+        imageUrl: "/images/products/fut.png", 
+        rangeId: rExtraBlitz.id, 
+        categoryId: catVL.id, 
+        shortDesc: "ACEA A3/B3/B4, API SN/CF", 
+        longDesc: "ACEA A3/B3/B4, API SN/CF, MB 229.1, VW 501.01/505.00" 
+      },
+      { 
+        name: "VICONOL 15W-40 A3/B4", 
+        slug: "viconol-15w40-a3b4", 
+        imageUrl: "/images/products/fut.png", 
+        rangeId: rSpyder.id, 
+        categoryId: catVL.id, 
+        shortDesc: "ACEA A3/B4, MB 229.1, API SL/CF", 
+        longDesc: "ACEA A3/B4, MB 229.1, API SL/CF, VW 501.01/505.00" 
+      },
+      { 
+        name: "VICONOL 20W-50 A3/B4", 
+        slug: "viconol-20w50-a3b4", 
+        imageUrl: "/images/products/fut.png", 
+        rangeId: rSpyder.id, 
+        categoryId: catVL.id, 
+        shortDesc: "ACEA A3/B4, MB 229.1, API SL/CF", 
+        longDesc: "ACEA A3/B4, MB 229.1, API SL/CF, VW 501.01/505.00" 
+      },
+      { 
+        name: "VICONOL HD40", 
+        slug: "viconol-hd40", 
+        imageUrl: "/images/products/fut.png", 
+        rangeId: rPX.id, 
+        categoryId: catPL.id, 
+        shortDesc: "API: CF/SF, MB 228.0, MAN 270", 
+        longDesc: "API: CF/SF, MB 228.0, MAN 270, MTU Type 1, CAT TO-2, ALLISON C-3" 
+      },
+      { 
+        name: "VICONOL HD50", 
+        slug: "viconol-hd50", 
+        imageUrl: "/images/products/fut.png", 
+        rangeId: rPX.id, 
+        categoryId: catPL.id, 
+        shortDesc: "API: CF/SF, MB 228.0, MAN 270", 
+        longDesc: "API: CF/SF, MB 228.0, MAN 270, MTU Type 1, CAT TO-2, ALLISON C-3" 
+      },
+      { 
+        name: "VICONOL HD60", 
+        slug: "viconol-hd60", 
+        imageUrl: "/images/products/fut.png", 
+        rangeId: rPX.id, 
+        categoryId: catPL.id, 
+        shortDesc: "API: CF/SF, MB 228.0, MAN 270", 
+        longDesc: "API: CF/SF, MB 228.0, MAN 270, MTU Type 1, CAT TO-2, ALLISON C-3" 
+      }
     ];
 
 

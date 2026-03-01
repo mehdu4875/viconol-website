@@ -56,7 +56,7 @@ export default function CategoryFilterBar({ categories, currentCatId, locale }: 
   };
 
   return (
-    <div className="sticky top-20 z-40 bg-[#0a0a0a] pt-4 pb-4 -mx-4 px-4 md:-mx-6 md:px-6 mb-8 w-[calc(100%+2rem)] md:w-[calc(100%+3rem)] shadow-[0_10px_30px_-10px_rgba(0,0,0,0.8)] border-b border-white/5">
+    <div className="sticky top-20 md:top-28 z-40 bg-[#0a0a0a] pt-4 pb-4 -mx-4 px-4 md:-mx-6 md:px-6 mb-8 w-[calc(100%+2rem)] md:w-[calc(100%+3rem)] shadow-[0_10px_30px_-10px_rgba(0,0,0,0.8)] border-b border-white/5">
       
       {/* 1. EN-TÊTE : Catégorie active et Bouton Menu */}
       <div className="flex items-center justify-between px-1">

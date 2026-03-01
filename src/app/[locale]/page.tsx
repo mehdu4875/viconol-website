@@ -36,7 +36,8 @@ export default function Home({ params: { locale } }: { params: { locale: string 
   ];
 
   return (
-    <main className="flex flex-col min-h-screen bg-viconol-dark overflow-x-hidden">
+    // La correction est ici : pt-20 md:pt-28 ajoutés pour compenser la hauteur de la Navbar
+    <main className="flex flex-col min-h-screen bg-viconol-dark overflow-x-hidden pt-20 md:pt-28">
       
       {/* --- 1. HERO SECTION --- */}
       <section className="relative h-[90vh] flex items-center justify-center overflow-hidden">
@@ -74,7 +75,6 @@ export default function Home({ params: { locale } }: { params: { locale: string 
                 priority
                 sizes="(max-width: 768px) 280px, 600px"
               />
-              {/* Le flash (logo-shine-overlay) a été supprimé ici ! */}
             </div>
           </div>
           
