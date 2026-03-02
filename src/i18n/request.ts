@@ -1,19 +1,20 @@
 import { getRequestConfig } from 'next-intl/server';
-import { notFound } from 'next/navigation';
-
-const locales = ['fr', 'en', 'de'];
 
 export default getRequestConfig(async ({ requestLocale }) => {
-  // Récupère la langue demandée (mise à jour next-intl 3.22+)
+  // On attend la locale demandée (mise à jour next-intl 3.22+)
   let locale = await requestLocale;
 
-  // Si aucune langue n'est trouvée ou si elle n'est pas dans la liste, on force l'Allemand
-  if (!locale || !locales.includes(locale as any)) {
+  // Sécurité absolue : si pas de locale, on force l'Allemand ('de')
+  if (!locale || !['fr', 'de', 'en'].includes(locale)) {
     locale = 'de';
   }
 
+  // On importe les messages dynamiquement
+  const messages = (await import(`../messages/${locale}.json`)).default;
+
+  // On retourne bien la locale pour empêcher Vercel de crasher !
   return {
-    locale, // <-- C'EST CETTE LIGNE QUI MANQUAIT ET QUI CRÉAIT LE CRASH VERCEL
-    messages: (await import(`../messages/${locale}.json`)).default
+    locale,
+    messages
   };
 });
