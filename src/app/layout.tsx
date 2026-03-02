@@ -4,7 +4,7 @@ import "./globals.css";
 
 const inter = Inter({ 
   subsets: ["latin"],
-  display: 'swap', // Important pour la vitesse de rendu
+  display: 'swap',
   preload: true 
 });
 
