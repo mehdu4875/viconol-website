@@ -104,15 +104,13 @@ export default function Navbar({ locale, categories = [] }: { locale: string, ca
 
           {/* ACTIONS & BURGER */}
           <div className="flex items-center gap-2 md:gap-6 flex-shrink-0">
-            {/* LOUPE ET LANGUE : La loupe s'affiche partout, la langue seulement sur PC */}
+            {/* LOUPE ET LANGUE s'affichent maintenant sur PC ET MOBILE */}
             <div className="flex items-center gap-2 md:gap-4 md:border-l md:border-white/10 md:pl-6 z-[120]">
                <SearchModal locale={locale} translations={searchTranslations} />
-               <div className="hidden md:block">
-                 <LanguageSwitcher locale={locale} />
-               </div>
+               <LanguageSwitcher locale={locale} />
             </div>
             
-            {/* Bouton Burger (Toujours à droite) - ACCESSIBILITÉ AJOUTÉE ICI */}
+            {/* Bouton Burger (Toujours à droite) */}
             <button 
               aria-label={isOpen ? "Fermer le menu" : "Ouvrir le menu"}
               aria-expanded={isOpen}
@@ -193,9 +191,7 @@ export default function Navbar({ locale, categories = [] }: { locale: string, ca
 
         {/* Footer Menu */}
         <div className="mt-auto p-8 bg-black flex flex-col gap-6 items-center border-t border-white/10 shrink-0 safe-area-bottom">
-          <div className="flex items-center justify-center w-full">
-            <LanguageSwitcher locale={locale} />
-          </div>
+          {/* Le sélecteur de langue n'est plus ici */}
           <p className="text-[10px] text-viconol-metal tracking-[0.5em] uppercase opacity-30">VICONÖL</p>
         </div>
       </div>
