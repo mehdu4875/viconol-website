@@ -1,20 +1,19 @@
 import { getRequestConfig } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 
-const locales = ['fr', 'en', 'de'];
+const locales = ['fr', 'de', 'en'];
 
 export default getRequestConfig(async ({ requestLocale }) => {
-  // 1. Récupérer la locale avec la NOUVELLE méthode
+  // 1. Récupérer la locale avec la nouvelle méthode de next-intl
   let locale = await requestLocale;
 
-  // 2. Vérifier si elle est valide, sinon forcer une locale par défaut
+  // 2. Si aucune locale n'est trouvée (par exemple par Vercel lors de la compilation)
   if (!locale || !locales.includes(locale)) {
-    locale = 'fr';
+    locale = 'fr'; // On force la langue par défaut pour empêcher le crash
   }
 
-  // 3. Retourner la locale ET les messages
   return {
-    locale, // <-- TRÈS IMPORTANT, C'EST CE QUE VERCEL RÉCLAME
+    locale, // <-- C'EST CETTE LIGNE QUI RÈGLE L'ERREUR DE VERCEL !
     messages: (await import(`../messages/${locale}.json`)).default
   };
 });
