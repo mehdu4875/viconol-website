@@ -55,8 +55,7 @@ export default function Navbar({ locale, categories = [] }: { locale: string, ca
       <nav className="fixed top-0 w-full z-[100] border-b border-white/10 bg-[#050505] h-20 md:h-28">
         <div className="max-w-7xl mx-auto px-4 md:px-6 h-full flex items-center justify-between"> 
           
-          {/* --- LOGO AGRANDI SUR MOBILE --- */}
-          {/* On passe de "h-10 w-28" à "h-14 w-40 sm:h-16 sm:w-48" pour avoir une belle taille sur téléphone */}
+          {/* --- LOGO --- */}
           <div className="flex-shrink-0">
             <Link href={`/${locale}`} className="relative h-14 w-40 sm:h-16 sm:w-48 md:h-24 md:w-64 flex items-center">
               <Image 
@@ -105,11 +104,15 @@ export default function Navbar({ locale, categories = [] }: { locale: string, ca
 
           {/* ACTIONS & BURGER */}
           <div className="flex items-center gap-2 md:gap-6 flex-shrink-0">
-            <div className="hidden md:flex items-center gap-4 border-l border-white/10 pl-6">
+            {/* LOUPE ET LANGUE : La loupe s'affiche partout, la langue seulement sur PC */}
+            <div className="flex items-center gap-2 md:gap-4 md:border-l md:border-white/10 md:pl-6 z-[120]">
                <SearchModal locale={locale} translations={searchTranslations} />
-               <LanguageSwitcher locale={locale} />
+               <div className="hidden md:block">
+                 <LanguageSwitcher locale={locale} />
+               </div>
             </div>
-            {/* Bouton Burger */}
+            
+            {/* Bouton Burger (Toujours à droite) */}
             <button 
               onClick={() => setIsOpen(!isOpen)}
               className="md:hidden p-2 text-viconol-primary cursor-pointer active:scale-90 transition-transform z-[120]"
@@ -123,7 +126,7 @@ export default function Navbar({ locale, categories = [] }: { locale: string, ca
       {/* --- MENU MOBILE --- */}
       <div className={`fixed inset-0 z-[110] bg-[#050505] transition-transform duration-500 ease-in-out md:hidden flex flex-col h-[100dvh] w-full ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
         
-        {/* Header du menu (Logo agrandi aussi ici) */}
+        {/* Header du menu */}
         <div className="h-20 flex-shrink-0 flex items-center justify-between px-6 border-b border-white/5 bg-black">
           <div className="relative h-10 w-32 opacity-70">
             <Image src="/images/logo.png" alt="VICONÖL" fill className="object-contain object-left" />
@@ -186,9 +189,8 @@ export default function Navbar({ locale, categories = [] }: { locale: string, ca
 
         {/* Footer Menu */}
         <div className="mt-auto p-8 bg-black flex flex-col gap-6 items-center border-t border-white/10 shrink-0 safe-area-bottom">
-          <div className="flex items-center justify-center gap-12 w-full">
-            <SearchModal locale={locale} translations={searchTranslations} />
-            <div className="w-px h-8 bg-white/10"></div>
+          {/* Uniquement le choix des langues ici maintenant */}
+          <div className="flex items-center justify-center w-full">
             <LanguageSwitcher locale={locale} />
           </div>
           <p className="text-[10px] text-viconol-metal tracking-[0.5em] uppercase opacity-30">VICONÖL</p>
