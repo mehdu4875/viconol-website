@@ -36,7 +36,6 @@ export default function Home({ params: { locale } }: { params: { locale: string 
   ];
 
   return (
-    // La correction est ici : pt-20 md:pt-28 ajoutés pour compenser la hauteur de la Navbar
     <main className="flex flex-col min-h-screen bg-viconol-dark overflow-x-hidden pt-20 md:pt-28">
       
       {/* --- 1. HERO SECTION --- */}
@@ -63,7 +62,6 @@ export default function Home({ params: { locale } }: { params: { locale: string 
           </div>
           
           <div className="relative mb-12 animate-fade-in-up delay-100">
-            {/* L'aura dorée douce en fond est conservée (très premium) */}
             <div className="absolute inset-0 bg-viconol-primary/20 blur-[80px] rounded-full scale-110 animate-pulse"></div>
             
             <div className="relative w-[280px] h-[140px] md:w-[600px] md:h-[300px]">
@@ -189,7 +187,11 @@ export default function Home({ params: { locale } }: { params: { locale: string 
                 name: tContact('form_name'),
                 email: tContact('form_email'),
                 message: tContact('form_message'),
-                send: tContact('send_btn')
+                placeholder: tContact('form_placeholder'), // <-- Ajouté ici
+                send: tContact('send_btn'),
+                sending: tContact('sending'),             // <-- Ajouté ici
+                success: tContact('success_msg'),         // <-- Ajouté ici
+                error: tContact('error_msg')              // <-- Ajouté ici
               }} 
             />
           </div>

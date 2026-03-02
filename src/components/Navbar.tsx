@@ -112,8 +112,10 @@ export default function Navbar({ locale, categories = [] }: { locale: string, ca
                </div>
             </div>
             
-            {/* Bouton Burger (Toujours à droite) */}
+            {/* Bouton Burger (Toujours à droite) - ACCESSIBILITÉ AJOUTÉE ICI */}
             <button 
+              aria-label={isOpen ? "Fermer le menu" : "Ouvrir le menu"}
+              aria-expanded={isOpen}
               onClick={() => setIsOpen(!isOpen)}
               className="md:hidden p-2 text-viconol-primary cursor-pointer active:scale-90 transition-transform z-[120]"
             >
@@ -150,6 +152,8 @@ export default function Navbar({ locale, categories = [] }: { locale: string, ca
               <button 
                 onClick={(e) => { e.preventDefault(); setIsMobileProductsOpen(!isMobileProductsOpen); }}
                 className="p-4 -m-4 text-gray-400 hover:text-white"
+                aria-label={isMobileProductsOpen ? "Fermer les catégories" : "Ouvrir les catégories"}
+                aria-expanded={isMobileProductsOpen}
               >
                 <ChevronDown className={`w-6 h-6 transition-transform duration-300 ${isMobileProductsOpen ? 'rotate-180 text-viconol-primary' : ''}`} />
               </button>
@@ -189,7 +193,6 @@ export default function Navbar({ locale, categories = [] }: { locale: string, ca
 
         {/* Footer Menu */}
         <div className="mt-auto p-8 bg-black flex flex-col gap-6 items-center border-t border-white/10 shrink-0 safe-area-bottom">
-          {/* Uniquement le choix des langues ici maintenant */}
           <div className="flex items-center justify-center w-full">
             <LanguageSwitcher locale={locale} />
           </div>
