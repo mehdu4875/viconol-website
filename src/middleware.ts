@@ -1,18 +1,25 @@
 import createMiddleware from 'next-intl/middleware';
- 
-export default createMiddleware({
-  // 1. La liste des langues
-  locales: ['fr', 'en', 'de'],
- 
-  // 2. La langue par défaut (Allemand)
-  defaultLocale: 'de',
 
-  // 3. IMPORTANT : On désactive la détection automatique du navigateur
-  // Cela force le site à utiliser 'defaultLocale' (donc l'Allemand) 
-  // si l'utilisateur n'a pas encore de cookie de préférence.
-  localeDetection: false
+export default createMiddleware({
+  // Une liste de toutes les langues supportées
+  locales: ['fr', 'de'],
+  
+  // Si l'utilisateur arrive sur la racine (/) sans langue, il est redirigé vers /fr
+  defaultLocale: 'fr',
+  
+  // On ne met pas le préfixe pour la langue par défaut (Optionnel, mais plus propre)
+  // localePrefix: 'as-needed' 
 });
- 
+
 export const config = {
-  matcher: ['/((?!api|_next|.*\\..*).*)']
+  // Le "matcher" définit quelles routes doivent passer par ce middleware
+  matcher: [
+    // 1. Accepter la racine
+    '/',
+    // 2. Accepter toutes les routes avec /fr ou /de
+    '/(fr|de)/:path*',
+    // 3. IMPORTANT : Ignorer expressément tout ce qui est système, api, images, etc.
+    // Cela évite l'erreur "middleware didn't run" sur Vercel !
+    '/((?!api|_next|_vercel|.*\\..*).*)'
+  ]
 };
