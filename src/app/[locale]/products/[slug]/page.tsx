@@ -1,6 +1,8 @@
 import { getProductBySlug } from "@/actions/product-actions";
 import { notFound } from "next/navigation";
 import Image from "next/image";
+import Link from "next/link";
+import { ChevronLeft } from 'lucide-react';
 import { getTranslations } from 'next-intl/server'; 
 import ProductAccordion from "@/components/ProductAccordion";
 import StickyProductBar from "@/components/StickyProductBar";
@@ -31,9 +33,20 @@ export default async function ProductDetail({ params }: { params: { slug: string
   };
 
   return (
-    <div className="min-h-screen bg-viconol-dark pt-24 pb-32 md:pb-20 md:pt-36 text-white">
+    <div className="min-h-screen bg-viconol-dark pt-24 pb-32 md:pb-20 md:pt-32 text-white">
       <div className="container mx-auto px-4 md:px-6">
         
+        {/* BOUTON RETOUR SEULEMENT AJOUTÉ ICI */}
+        <Link 
+          href={`/${params.locale}/products`}
+          className="inline-flex items-center gap-2 text-gray-400 hover:text-viconol-primary transition-colors mb-6 md:mb-8 group"
+        >
+          <div className="p-2 bg-white/5 rounded-lg border border-white/10 group-hover:border-viconol-primary/50 transition-colors">
+            <ChevronLeft className="w-5 h-5" />
+          </div>
+          <span className="text-xs md:text-sm font-bold uppercase tracking-widest">{t('backToProducts')}</span>
+        </Link>
+
         {/* Layout : Colonne simple sur Mobile / 2 Colonnes sur PC */}
         <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 lg:gap-16 items-start">
           

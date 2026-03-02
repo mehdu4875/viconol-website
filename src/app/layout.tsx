@@ -9,7 +9,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "VICONÖL | Premium German Lubricants",
+  title: "VICONÖL",
   description: "High-performance motor oils and industrial lubricants. Made in Germany.",
 };
 
