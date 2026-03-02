@@ -8,10 +8,10 @@ function getImageUrl(productName: string, categoryId: string): string {
 
   // 1. RÈGLE PRIORITAIRE : Si ce n'est pas un Véhicule Léger (VL), c'est un FÛT
   if (categoryId !== 'VL') {
-    if (categoryId === 'GR' || categoryId === 'SP') {
-      return '/images/products/neutre.png'; // Bidon blanc pour additifs/graisses
+    if (categoryId === 'SP') { // La règle pour 'GR' (Graisses) a été retirée
+      return '/images/products/neutre.png'; // Bidon blanc pour additifs/spécialités
     }
-    return '/images/products/fut.png'; // Fût pour PL, AG, TR, AT, HY, GE, IN...
+    return '/images/products/fut.png'; // Fût pour PL, AG, TR, AT, HY, GE, IN, NA...
   }
 
   // 2. Si c'est un VL, on cherche l'image correspondante
@@ -45,13 +45,12 @@ async function main() {
     { id: 'TR', slug: 'transmissions', name: { fr: 'Transmissions', de: 'Getriebe' } },
     { id: 'AT', slug: 'boites-auto', name: { fr: 'Boîtes Auto', de: 'Automatikgetriebe' } },
     { id: 'MO', slug: 'moto', name: { fr: 'Moto', de: 'Motorrad' } },
-    { id: 'NA', slug: 'nautisme', name: { fr: 'Nautisme', de: 'Schifffahrt' } },
-    { id: 'GR', slug: 'graisses', name: { fr: 'Graisses', de: 'Schmierfette' } },
+    { id: 'NA', slug: 'nautisme', name: { fr: 'Nautisme & Jetski', de: 'Schifffahrt & Jetski' } }, // Mise à jour du nom
     { id: 'HY', slug: 'hydraulique', name: { fr: 'Hydraulique', de: 'Hydraulik' } },
     { id: 'GE', slug: 'engrenages-indus', name: { fr: 'Engrenages Indus.', de: 'Industriegetriebe' } },
     { id: 'IN', slug: 'industrie', name: { fr: 'Industrie', de: 'Industrie' } },
     { id: 'SP', slug: 'specialites', name: { fr: 'Spécialités', de: 'Spezialitäten' } }
-  ];
+  ]; // La catégorie 'GR' (Graisses) a été supprimée
 
   for (const cat of categories) {
     await prisma.category.create({ data: cat });
@@ -102,15 +101,24 @@ async function main() {
     { name: 'VICONOL MOTOSINT 2T', categoryId: 'MO', fr: 'API TC JASO M345 FD', de: 'API TC JASO M345 FD' },
     { name: 'VICONOL SAE 5W HORQUIM', categoryId: 'MO', fr: 'Huile pour fourches de moto DIN 51524 Partie 2', de: 'Gabelöl für Motorräder DIN 51524 Teil 2' },
 
-    // --- NAUTISME (Fûts) ---
+    // --- NAUTISME & JETSKI (Fûts) ---
     { name: 'VICONOL MARSINT 10W30', categoryId: 'NA', fr: 'NMMA FC - W FC-729793Y', de: 'NMMA FC - W FC-729793Y' },
     { name: 'VICONOL MARSINT 2T W3', categoryId: 'NA', fr: 'NMMA TC-W3', de: 'NMMA TC-W3' },
     { name: 'VICONOL MARMIN 15W40', categoryId: 'NA', fr: 'API CI-4 / CH-4 / SL 150 TBN', de: 'API CI-4 / CH-4 / SL 150 TBN' },
-
-    // --- GRAISSES (Bidon Neutre) ---
-    { name: 'VICONOL GRATECH COMPLEX', categoryId: 'GR', fr: 'Graisse complexe au lithium E.P. Bleue', de: 'Lithium-Komplexfett E.P. Blau' },
-    { name: 'VICONOL CUGRAS COBRE', categoryId: 'GR', fr: 'Graisse de cuivre hautes températures', de: 'Kupferfett Hochtemperatur' },
-    { name: 'VICONOL GRASA MEDICINAL', categoryId: 'GR', fr: 'Graisse Atoxique NSF DIN 51825', de: 'Ungiftiges Fett NSF DIN 51825' },
+    
+    // --- LES 2 NOUVEAUX PRODUITS JETSKI AJOUTÉS ICI ---
+    { 
+      name: 'VICONOL MARINE 4T 10W-40', 
+      categoryId: 'NA', 
+      fr: 'Huile moteur 4T haute performance spécialement conçue pour les Jetskis et motomarines. Formulée avec des additifs anti-corrosion extrêmes pour protéger votre moteur contre l\'environnement salin.', 
+      de: 'Hochleistungs-4-Takt-Motorenöl speziell für Jetskis und Wassermotorräder entwickelt. Mit extremen Korrosionsschutzadditiven formuliert, um Ihren Motor vor salziger Umgebung zu schützen.' 
+    },
+    { 
+      name: 'VICONOL JETSKI 2T SYNTHETIC', 
+      categoryId: 'NA', 
+      fr: 'Huile 100% synthétique pour moteurs 2 temps de Jetskis. Notre formule garantit une lubrification maximale et une combustion sans résidus dans les conditions marines les plus sévères.', 
+      de: '100% vollsynthetisches Öl für 2-Takt-Jetski-Motoren. Unsere Formel garantiert maximale Schmierung und eine rückstandsfreie Verbrennung unter den härtesten marinen Bedingungen.' 
+    },
 
     // --- HYDRAULIQUE (Fûts) ---
     { name: 'VICONOL ISO 46 HIDRO', categoryId: 'HY', fr: 'DIN 51524 Partie 1 HL ISO 6743/4 HL', de: 'DIN 51524 Teil 1 HL ISO 6743/4 HL' },
@@ -139,7 +147,7 @@ async function main() {
     });
   }
 
-  console.log('✅ Base de données prête ! Les traductions espagnoles ont été supprimées et traduites en Français/Allemand.');
+  console.log('✅ Base de données prête ! Les graisses ont été supprimées et les produits Jetski ont été ajoutés.');
 }
 
 main().catch(e => console.error(e)).finally(async () => await prisma.$disconnect());
