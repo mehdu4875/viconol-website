@@ -54,6 +54,9 @@ export default async function ProductsPage({
         heroImage = '/images/moto.png';
       } else if (slug.includes('agri') || cat.id === 'AG') {
         heroImage = '/images/agri.png';
+      } else if (slug.includes('transmission') || cat.id === 'TR') {
+        // NOUVELLE RÈGLE AJOUTÉE ICI !
+        heroImage = '/images/transmission.jpg';
       }
     }
   }
@@ -64,9 +67,7 @@ export default async function ProductsPage({
       {/* --- HERO SECTION CINÉMATOGRAPHIQUE PARFAITE --- */}
       <section className="relative bg-[#050505] py-16 md:py-0 border-b border-white/5 overflow-hidden min-h-[400px] md:h-[50vh] lg:h-[60vh] flex items-center">
         
-        {/* 1. L'IMAGE PRINCIPALE (LA SOLUTION AU ZOOM) */}
-        {/* Sur PC, la boîte de l'image ne fait que 60% de large. Comme elle est moins "allongée", 
-            le mode 'cover' n'a plus besoin de zoomer ! L'image est affichée en entier sur la droite. */}
+        {/* 1. L'IMAGE PRINCIPALE */}
         <div className="absolute top-0 right-0 h-full w-full md:w-[60%] lg:w-[65%] z-0">
           <Image 
             src={heroImage} 
@@ -78,8 +79,6 @@ export default async function ProductsPage({
         </div>
 
         {/* 2. LE MASQUE MAGIQUE (LE FONDANT) */}
-        {/* Mobile: simple filtre sombre à 75%. 
-            PC: Un dégradé noir très large qui s'arrête exactement sur la bordure de l'image pour la fondre sans coupure. */}
         <div className="absolute inset-0 z-10 md:hidden bg-[#050505]/75"></div>
         <div className="hidden md:block absolute top-0 left-0 h-full w-[80%] z-10 bg-gradient-to-r from-[#050505] via-[#050505] to-transparent"></div>
         

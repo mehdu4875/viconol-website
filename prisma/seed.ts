@@ -45,7 +45,7 @@ async function main() {
     { id: 'TR', slug: 'transmissions', name: { fr: 'Transmissions', de: 'Getriebe' } },
     { id: 'AT', slug: 'boites-auto', name: { fr: 'Boîtes Auto', de: 'Automatikgetriebe' } },
     { id: 'MO', slug: 'moto', name: { fr: 'Moto', de: 'Motorrad' } },
-    { id: 'NA', slug: 'nautisme', name: { fr: 'Nautisme & Jetski', de: 'Schifffahrt & Jetski' } }, // Mise à jour du nom
+    { id: 'NA', slug: 'nautisme', name: { fr: 'Nautisme', de: 'Schifffahrt' } }, // Mise à jour du nom
     { id: 'HY', slug: 'hydraulique', name: { fr: 'Hydraulique', de: 'Hydraulik' } },
     { id: 'GE', slug: 'engrenages-indus', name: { fr: 'Engrenages Indus.', de: 'Industriegetriebe' } },
     { id: 'IN', slug: 'industrie', name: { fr: 'Industrie', de: 'Industrie' } },

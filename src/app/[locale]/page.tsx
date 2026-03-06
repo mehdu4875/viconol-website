@@ -14,7 +14,7 @@ export default function Home({ params: { locale } }: { params: { locale: string 
     { id: 'VL', icon: Car, title: "Automotive", descKey: 'stats.tech_desc', image: '/images/photo voiture .jpeg' },
     { id: 'IN', icon: Cog, title: "Industrie", descKey: 'stats.tech_desc', image: '/images/Industrie .jpeg' },
     { id: 'PL', icon: Truck, title: "Heavy Duty", descKey: 'stats.tech_desc', image: '/images/Photo camio.jpeg' },
-    { id: 'NA', icon: Anchor, title: "Nautisme & Jetski", descKey: 'stats.tech_desc', image: '/images/labo jet.png' },
+    { id: 'NA', icon: Anchor, title: "Nautisme", descKey: 'stats.tech_desc', image: '/images/labo jet.png' }, // Renommé ici !
   ];
 
   return (
