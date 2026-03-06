@@ -9,20 +9,10 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // --- NOUVELLE PALETTE LUMINEUSE ---
         viconol: {
-          primary: "#d4af37",    // L'or reste pour les accents (boutons, titres clairs)
-          bg: {
-            light: "#ffffff",    // Le nouveau fond principal du site (BLANC)
-            alt: "#f8f9fa",      // Un gris très clair pour alterner les sections
-          },
-          text: {
-            dark: "#1a1a1a",     // La nouvelle couleur principale du texte (PRESQUE NOIR)
-            muted: "#666666",    // Pour les textes secondaires
-          },
-          border: {
-            light: "#e5e7eb",    // Pour les bordures fines sur fond blanc
-          }
+          primary: "#d4af37",
+          dark: "#050505",
+          metal: "#888888",
         },
       },
       fontFamily: {

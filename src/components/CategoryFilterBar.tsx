@@ -27,13 +27,8 @@ export default function CategoryFilterBar({ categories, locale, allLabel }: Cate
     return jsonName[locale] || jsonName['fr'] || "";
   };
 
-  // --- CORRECTION DU BUG DE TRADUCTION ---
-  // Si next-intl ne trouve pas le texte, il renvoie la clé (ex: "Products.all_catalogue").
-  // On détecte cette erreur et on la remplace par un texte propre de secours.
   const isTranslationMissing = !allLabel || allLabel.includes('all_catalogue');
-  const safeAllLabel = isTranslationMissing 
-    ? (locale === 'de' ? 'Alle anzeigen' : 'Tout voir') 
-    : allLabel;
+  const safeAllLabel = isTranslationMissing ? (locale === 'de' ? 'Alle anzeigen' : 'Tout voir') : allLabel;
 
   const activeCat = categories.find(c => c.id === currentCatId);
   const activeCatName = activeCat ? getCatName(activeCat.name) : safeAllLabel;
@@ -62,23 +57,22 @@ export default function CategoryFilterBar({ categories, locale, allLabel }: Cate
   };
 
   return (
-    <div className="sticky top-20 md:top-28 z-40 bg-white/90 backdrop-blur-md pt-4 pb-4 -mx-4 px-4 md:-mx-6 md:px-6 mb-8 w-[calc(100%+2rem)] md:w-[calc(100%+3rem)] shadow-sm border-b border-viconol-border-light">
+    <div className="sticky top-20 md:top-28 z-40 bg-[#0a0a0a]/95 backdrop-blur-md pt-4 pb-4 -mx-4 px-4 md:-mx-6 md:px-6 mb-8 w-[calc(100%+2rem)] md:w-[calc(100%+3rem)] shadow-[0_10px_30px_-10px_rgba(0,0,0,0.8)] border-b border-white/5">
       
-      {/* 1. EN-TÊTE */}
       <div className="flex items-center justify-between px-1">
          <div className="flex flex-col md:flex-row md:items-center gap-1 md:gap-3">
-           <span className="text-viconol-text-muted text-xs uppercase tracking-widest font-bold">
+           <span className="text-gray-500 text-xs uppercase tracking-widest font-bold">
              {locale === 'de' ? 'Kategorien' : 'Catégories'}
            </span>
-           <span className="text-viconol-text-dark text-sm md:text-base font-bold">
-             <span className="hidden md:inline text-gray-300 mr-2">•</span>
+           <span className="text-white text-sm md:text-base font-bold">
+             <span className="hidden md:inline text-gray-600 mr-2">•</span>
              {activeCatName}
            </span>
          </div>
          
          <button 
            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-           className="flex items-center gap-2 text-viconol-primary text-xs md:text-sm font-bold uppercase tracking-widest hover:bg-viconol-primary hover:text-white transition-colors bg-viconol-primary/10 px-4 py-2 rounded-full border border-viconol-primary/20 whitespace-nowrap"
+           className="flex items-center gap-2 text-viconol-primary text-xs md:text-sm font-bold uppercase tracking-widest hover:text-white transition-colors bg-viconol-primary/10 px-4 py-2 rounded-full border border-viconol-primary/20 whitespace-nowrap"
          >
            {isDropdownOpen ? (
              <><X size={16} /> {locale === 'de' ? 'Schließen' : 'Fermer'}</>
@@ -88,7 +82,6 @@ export default function CategoryFilterBar({ categories, locale, allLabel }: Cate
          </button>
       </div>
 
-      {/* 2. LE MENU HORIZONTAL DÉFILANT */}
       <div 
         className={`transition-all duration-300 overflow-hidden ${
           isDropdownOpen ? 'max-h-[120px] opacity-100 mt-4' : 'max-h-0 opacity-0 mt-0'
@@ -96,11 +89,10 @@ export default function CategoryFilterBar({ categories, locale, allLabel }: Cate
       >
         <div className="relative flex items-center group py-2">
           
-          {/* Flèche Gauche */}
           <div className={`absolute left-0 z-10 transition-opacity duration-300 ${showLeftArrow ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
             <button 
               onClick={() => scroll('left')}
-              className="flex items-center justify-center -ml-2 drop-shadow-lg bg-white text-viconol-text-dark hover:bg-viconol-primary hover:text-white transition-colors p-2 rounded-full border border-viconol-border-light shadow-md"
+              className="flex items-center justify-center -ml-2 drop-shadow-2xl bg-[#1a1a1a] text-viconol-primary hover:bg-viconol-primary hover:text-black transition-colors p-2 rounded-full border border-viconol-primary/30 shadow-[0_0_15px_rgba(0,0,0,0.8)]"
             >
               <ChevronLeft size={20} />
             </button>
@@ -114,11 +106,10 @@ export default function CategoryFilterBar({ categories, locale, allLabel }: Cate
           >
             <style jsx>{`div::-webkit-scrollbar { display: none; }`}</style>
 
-            {/* Bouton "Tout voir" (Utilise le texte sécurisé) */}
             <Link 
               href={`/${locale}/products`}
               onClick={() => setIsDropdownOpen(false)}
-              className={`flex-shrink-0 px-6 py-2.5 rounded-full text-xs md:text-sm font-bold uppercase tracking-widest border transition-all duration-300 ${!currentCatId ? 'bg-viconol-primary text-white border-viconol-primary shadow-[0_0_15px_rgba(212,175,55,0.4)]' : 'bg-viconol-bg-alt text-viconol-text-muted border-viconol-border-light hover:border-viconol-primary hover:text-viconol-primary'}`}
+              className={`flex-shrink-0 px-6 py-2.5 rounded-full text-xs md:text-sm font-bold uppercase tracking-widest border transition-all duration-300 ${!currentCatId ? 'bg-viconol-primary text-black border-viconol-primary shadow-[0_0_15px_rgba(212,175,55,0.4)]' : 'bg-white/5 text-gray-400 border-white/10 hover:border-white hover:text-white'}`}
             >
               {safeAllLabel}
             </Link>
@@ -128,18 +119,17 @@ export default function CategoryFilterBar({ categories, locale, allLabel }: Cate
                 key={cat.id} 
                 href={`/${locale}/products?cat=${cat.id}`}
                 onClick={() => setIsDropdownOpen(false)}
-                className={`flex-shrink-0 px-6 py-2.5 rounded-full text-xs md:text-sm font-bold uppercase tracking-widest border transition-all duration-300 ${currentCatId === cat.id ? 'bg-viconol-primary text-white border-viconol-primary shadow-[0_0_15px_rgba(212,175,55,0.4)]' : 'bg-viconol-bg-alt text-viconol-text-muted border-viconol-border-light hover:border-viconol-primary hover:text-viconol-primary'}`}
+                className={`flex-shrink-0 px-6 py-2.5 rounded-full text-xs md:text-sm font-bold uppercase tracking-widest border transition-all duration-300 ${currentCatId === cat.id ? 'bg-viconol-primary text-black border-viconol-primary shadow-[0_0_15px_rgba(212,175,55,0.4)]' : 'bg-white/5 text-gray-400 border-white/10 hover:border-white hover:text-white'}`}
               >
                 {getCatName(cat.name)}
               </Link>
             ))}
           </div>
 
-          {/* Flèche Droite */}
           <div className={`absolute right-0 z-10 transition-opacity duration-300 ${showRightArrow ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
             <button 
               onClick={() => scroll('right')}
-              className="flex items-center justify-center -mr-2 drop-shadow-lg bg-white text-viconol-text-dark hover:bg-viconol-primary hover:text-white transition-colors p-2 rounded-full border border-viconol-border-light shadow-md"
+              className="flex items-center justify-center -mr-2 drop-shadow-2xl bg-[#1a1a1a] text-viconol-primary hover:bg-viconol-primary hover:text-black transition-colors p-2 rounded-full border border-viconol-primary/30 shadow-[0_0_15px_rgba(0,0,0,0.8)]"
             >
               <ChevronRight size={20} />
             </button>

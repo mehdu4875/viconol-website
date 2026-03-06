@@ -21,7 +21,6 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: { locale: string };
 }) {
-  
   const messages = await getMessages();
 
   let categories: any[] = [];
@@ -35,11 +34,7 @@ export default async function RootLayout({
 
   return (
     <html lang={locale}>
-      {/* MISE À JOUR DU DESIGN :
-        - bg-viconol-bg-light : Applique le fond blanc
-        - text-viconol-text-dark : Applique le texte sombre
-      */}
-      <body className={`${inter.variable} font-sans bg-viconol-bg-light text-viconol-text-dark antialiased`}>
+      <body className={`${inter.variable} font-sans bg-[#050505] text-white antialiased`}>
         <NextIntlClientProvider messages={messages}>
           <Navbar locale={locale} categories={categories} />
           {children}
