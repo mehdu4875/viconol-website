@@ -1,45 +1,38 @@
 "use client";
 
-import { Mail, FileText } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 
-interface StickyProductBarProps {
-  pdfUrl?: string | null;
-  contactUrl: string;
-  productName: string; // This prop is now unused but kept for interface compatibility
-}
+export default function StickyProductBar({ product, locale }: { product: any, locale: string }) {
+  const [isVisible, setIsVisible] = useState(false);
+  const t = useTranslations('ProductDetail');
 
-export default function StickyProductBar({ pdfUrl, contactUrl, productName }: StickyProductBarProps) {
-  // No state needed anymore as the share button is removed
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsVisible(window.scrollY > 400);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden pb-safe">
-      {/* Shadow gradient */}
-      <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black via-black/80 to-transparent -z-10 pointer-events-none"></div>
-
-      <div className="bg-[#121212]/90 backdrop-blur-lg border-t border-white/10 px-4 py-3 flex items-center gap-3 safe-area-bottom">
+    // bg-[#050505]/95 -> bg-white/95, border-white/10 -> border-viconol-border-light
+    <div className={`fixed bottom-0 left-0 w-full bg-white/95 backdrop-blur-md border-t border-viconol-border-light z-50 transform transition-transform duration-300 shadow-[0_-10px_30px_rgba(0,0,0,0.05)] ${isVisible ? 'translate-y-0' : 'translate-y-full'}`}>
+      <div className="container mx-auto px-6 h-20 md:h-24 flex items-center justify-between gap-4">
+        <div className="hidden md:block flex-shrink-0">
+          {/* text-white -> text-viconol-text-dark */}
+          <div className="text-sm font-black text-viconol-text-dark uppercase tracking-wider truncate max-w-md">{product.name}</div>
+        </div>
         
-        {/* Bouton 1 : PDF (Si dispo) - Secondaire */}
-        {pdfUrl && (
-          <a 
-            href={pdfUrl} 
-            target="_blank"
-            className="flex-1 flex flex-col items-center justify-center h-12 rounded-xl bg-white/5 border border-white/10 active:bg-white/10 active:scale-95 transition-all"
+        <div className="flex gap-4 w-full md:w-auto">
+          <Link 
+            href={`/${locale}#contact`} 
+            className="flex-1 md:flex-none text-center bg-viconol-primary text-white px-6 md:px-10 py-3 md:py-4 rounded-full font-black uppercase tracking-widest hover:bg-viconol-text-dark transition-colors shadow-lg text-xs md:text-sm whitespace-nowrap"
           >
-            <FileText className="w-4 h-4 text-gray-400 mb-0.5" />
-            <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Fiche</span>
-          </a>
-        )}
-
-        {/* Bouton 2 : CONTACT (Principal - Doré) */}
-        {/* Il prend toute la place (flex-2) si le PDF est là, sinon toute la place (flex-1) */}
-        <a 
-          href={contactUrl}
-          className={`${pdfUrl ? 'flex-[2]' : 'flex-1'} flex items-center justify-center gap-2 h-12 rounded-xl bg-viconol-primary text-black font-black uppercase tracking-widest shadow-[0_0_20px_-5px_rgba(212,175,55,0.4)] active:scale-95 transition-all`}
-        >
-          <Mail className="w-4 h-4" />
-          <span className="text-xs">Contacter</span>
-        </a>
-
+            {t('contactSales')}
+          </Link>
+        </div>
       </div>
     </div>
   );

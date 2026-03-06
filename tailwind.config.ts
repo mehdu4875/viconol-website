@@ -9,36 +9,44 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        // --- NOUVELLE PALETTE LUMINEUSE ---
         viconol: {
-            dark: "#050505",       // Noir pur profond (Luxe)
-            panel: "#121212",      // Gris anthracite très sombre (Cartes)
-            primary: "#D4AF37",    // OR Métallique (Le vrai Gold standard)
-            accent: "#F59E0B",     // Or ambré (Pour les effets de lumière)
-            warning: "#B8860B",    // Or foncé (Dark Goldenrod)
-            metal: "#A3A3A3",      // Argent/Gris (Textes secondaires)
-        }
+          primary: "#d4af37",    // L'or reste pour les accents (boutons, titres clairs)
+          bg: {
+            light: "#ffffff",    // Le nouveau fond principal du site (BLANC)
+            alt: "#f8f9fa",      // Un gris très clair pour alterner les sections
+          },
+          text: {
+            dark: "#1a1a1a",     // La nouvelle couleur principale du texte (PRESQUE NOIR)
+            muted: "#666666",    // Pour les textes secondaires
+          },
+          border: {
+            light: "#e5e7eb",    // Pour les bordures fines sur fond blanc
+          }
+        },
       },
-      backgroundImage: {
-        'hero-gradient': "radial-gradient(circle at center, #1a1a1a 0%, #000000 100%)",
-        // Nouveau dégradé doré pour les effets
-        'gold-gradient': "linear-gradient(135deg, #D4AF37 0%, #F59E0B 100%)",
-        'glow-conic': 'conic-gradient(from 180deg at 50% 50%, #D4AF37 0deg, #F59E0B 180deg, #B8860B 360deg)',
-      },
-      animation: {
-        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-        'float': 'float 6s ease-in-out infinite',
-        'shimmer': 'shimmer 2s linear infinite',
+      fontFamily: {
+        sans: ['var(--font-inter)'],
       },
       keyframes: {
-        float: {
-          '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-20px)' },
+        'fade-in-up': {
+          '0%': { opacity: '0', transform: 'translateY(20px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
         },
-        shimmer: {
-          '0%': { backgroundPosition: '-200% 0' },
-          '100%': { backgroundPosition: '200% 0' },
-        }
-      }
+        'pulse': {
+          '0%, 100%': { opacity: '1' },
+          '50%': { opacity: '0.5' },
+        },
+        'slow-zoom': {
+          '0%': { transform: 'scale(1)' },
+          '100%': { transform: 'scale(1.05)' },
+        },
+      },
+      animation: {
+        'fade-in-up': 'fade-in-up 0.8s ease-out forwards',
+        'pulse': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'slow-zoom': 'slow-zoom 20s linear infinite alternate',
+      },
     },
   },
   plugins: [],

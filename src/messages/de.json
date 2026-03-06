@@ -14,8 +14,8 @@
     "stats": {
       "tech_title": "Synthetische Technologie",
       "tech_desc": "Fortschrittliche Molekularformeln.",
-      "iso_title": "ISO-Zertifizierte Normen",
-      "iso_desc": "Übertrifft Herstelleranforderungen.",
+      "iso_title": "Im Labor Entwickelt",
+      "iso_desc": "Jeder Tropfen wird wissenschaftlich entwickelt, getestet und perfektioniert, um absolute Reinheit und Leistung zu garantieren.",
       "global_title": "Internationale Präsenz",
       "global_desc": "Deutsche Exzellenz in Europa."
     },
@@ -73,7 +73,7 @@
     "hours_title": "ÖFFNUNGSZEITEN"
   },
   "Footer": {
-    "rights": "Alle Rechte vorbehalten.",
+    "copyright": "© {year} VICONÖL. Alle Rechte vorbehalten.",
     "description": "Hochleistungsschmierstoffe mit deutscher Technologie für Automobil und Industrie.",
     "quick_links": "SCHNELLZUGRIFF",
     "legal": "RECHTLICHES",

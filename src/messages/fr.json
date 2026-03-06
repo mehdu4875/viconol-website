@@ -14,8 +14,8 @@
     "stats": {
       "tech_title": "Technologie Synthétique",
       "tech_desc": "Formules moléculaires avancées.",
-      "iso_title": "Normes ISO Certifiées",
-      "iso_desc": "Dépasse les exigences constructeurs.",
+      "iso_title": "Formulé en Laboratoire",
+      "iso_desc": "Chaque goutte est développée, testée et perfectionnée scientifiquement pour garantir une pureté et des performances absolues.",
       "global_title": "Présence Internationale",
       "global_desc": "L'excellence allemande en Europe."
     },
@@ -74,7 +74,7 @@
     "hours_title": "HORAIRES"
   },
   "Footer": {
-    "rights": "Tous droits réservés.",
+    "copyright": "© {year} VICONÖL. Tous droits réservés.",
     "description": "Lubrifiants haute performance de technologie allemande pour l'automobile et l'industrie.",
     "quick_links": "LIENS RAPIDES",
     "legal": "LÉGAL",
