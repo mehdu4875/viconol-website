@@ -32,28 +32,64 @@ export default async function ProductsPage({
     : allProducts;
 
   let currentCatName = "";
+  
+  // SYSTÈME INFAILLIBLE POUR LES IMAGES DYNAMIQUES
+  let heroImage = '/images/tuf piste.png'; // L'image par défaut
+  
   if (catParam) {
     const cat = categories.find(c => c.id === catParam);
     if (cat) {
       currentCatName = typeof cat.name === 'string' ? cat.name : (cat.name as any)[locale] || (cat.name as any)['fr'] || "";
+      const slug = cat.slug.toLowerCase();
+      
+      if (slug.includes('vehicule') || slug.includes('auto') || cat.id === 'VL') {
+        heroImage = '/images/photo voiture .jpeg';
+      } else if (slug.includes('industrie') || slug.includes('indus') || cat.id === 'IN') {
+        heroImage = '/images/Industrie .jpeg';
+      } else if (slug.includes('poids') || slug.includes('lourd') || cat.id === 'PL') {
+        heroImage = '/images/Photo camio.jpeg';
+      } else if (slug.includes('nautisme') || slug.includes('marine') || slug.includes('jet') || cat.id === 'NA') {
+        heroImage = '/images/labo jet.png';
+      } else if (slug.includes('moto') || cat.id === 'MO') {
+        heroImage = '/images/moto.png';
+      } else if (slug.includes('agri') || cat.id === 'AG') {
+        heroImage = '/images/agri.png';
+      }
     }
   }
 
   return (
-    <main className="min-h-screen bg-[#050505] pt-20 md:pt-28 pb-20">
+    <main className="min-h-screen bg-[#050505] pt-20 md:pt-28 pb-20 overflow-x-hidden">
       
-      <section className="relative bg-[#0a0a0a] py-16 md:py-24 border-b border-white/5 overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <Image src="/images/tuf piste.png" alt="Viconol Catalogue" fill className="object-cover object-center" priority />
-          <div className="absolute inset-0 bg-[#050505]/80 backdrop-blur-[2px]"></div>
-        </div>
+      {/* --- HERO SECTION CINÉMATOGRAPHIQUE PARFAITE --- */}
+      <section className="relative bg-[#050505] py-16 md:py-0 border-b border-white/5 overflow-hidden min-h-[400px] md:h-[50vh] lg:h-[60vh] flex items-center">
         
-        <div className="container mx-auto px-6 relative z-10">
-          <div className="max-w-3xl">
-            <h1 className="text-4xl md:text-6xl font-black text-white mb-6 uppercase italic">
+        {/* 1. L'IMAGE PRINCIPALE (LA SOLUTION AU ZOOM) */}
+        {/* Sur PC, la boîte de l'image ne fait que 60% de large. Comme elle est moins "allongée", 
+            le mode 'cover' n'a plus besoin de zoomer ! L'image est affichée en entier sur la droite. */}
+        <div className="absolute top-0 right-0 h-full w-full md:w-[60%] lg:w-[65%] z-0">
+          <Image 
+            src={heroImage} 
+            alt="Viconol Catalogue" 
+            fill 
+            className="object-cover object-center md:object-right" 
+            priority 
+          />
+        </div>
+
+        {/* 2. LE MASQUE MAGIQUE (LE FONDANT) */}
+        {/* Mobile: simple filtre sombre à 75%. 
+            PC: Un dégradé noir très large qui s'arrête exactement sur la bordure de l'image pour la fondre sans coupure. */}
+        <div className="absolute inset-0 z-10 md:hidden bg-[#050505]/75"></div>
+        <div className="hidden md:block absolute top-0 left-0 h-full w-[80%] z-10 bg-gradient-to-r from-[#050505] via-[#050505] to-transparent"></div>
+        
+        {/* 3. LE CONTENU (TEXTE) */}
+        <div className="container mx-auto px-6 relative z-20">
+          <div className="max-w-2xl mx-auto md:mx-0 text-center md:text-left">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6 uppercase italic leading-tight">
               {t('title')}
             </h1>
-            <p className="text-lg md:text-xl text-gray-300 font-medium mb-8">
+            <p className="text-lg md:text-xl text-gray-300 font-medium mb-10 leading-relaxed border-l-2 border-viconol-primary pl-6 md:pl-8 mx-auto md:mx-0 max-w-lg md:max-w-none">
               {catParam 
                 ? t('category_count', { category: currentCatName, count: products.length })
                 : qParam 
@@ -62,7 +98,7 @@ export default async function ProductsPage({
               }
             </p>
 
-            <form action={`/${locale}/products`} className="relative max-w-xl shadow-2xl rounded-xl">
+            <form action={`/${locale}/products`} className="relative max-w-xl shadow-2xl rounded-xl mx-auto md:mx-0">
               {catParam && <input type="hidden" name="cat" value={catParam} />}
               <input 
                 type="text" 

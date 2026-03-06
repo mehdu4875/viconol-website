@@ -11,10 +11,10 @@ export default function Home({ params: { locale } }: { params: { locale: string 
   const tContact = useTranslations('Contact');
 
   const universes = [
-    { id: 'auto', icon: Car, title: "Automotive", descKey: 'stats.tech_desc', image: '/images/photo voiture .jpeg' },
-    { id: 'indus', icon: Cog, title: "Industrie", descKey: 'stats.tech_desc', image: '/images/Industrie .jpeg' },
-    { id: 'heavy', icon: Truck, title: "Heavy Duty", descKey: 'stats.tech_desc', image: '/images/Photo camio.jpeg' },
-    { id: 'marine', icon: Anchor, title: "Marine", descKey: 'stats.tech_desc', image: '/images/labo jet.png' },
+    { id: 'VL', icon: Car, title: "Automotive", descKey: 'stats.tech_desc', image: '/images/photo voiture .jpeg' },
+    { id: 'IN', icon: Cog, title: "Industrie", descKey: 'stats.tech_desc', image: '/images/Industrie .jpeg' },
+    { id: 'PL', icon: Truck, title: "Heavy Duty", descKey: 'stats.tech_desc', image: '/images/Photo camio.jpeg' },
+    { id: 'NA', icon: Anchor, title: "Nautisme & Jetski", descKey: 'stats.tech_desc', image: '/images/labo jet.png' },
   ];
 
   return (
@@ -62,7 +62,7 @@ export default function Home({ params: { locale } }: { params: { locale: string 
 
         <div className="flex overflow-x-auto gap-6 px-6 pb-8 snap-x snap-mandatory no-scrollbar md:grid md:grid-cols-4 md:gap-8 md:overflow-visible">
           {universes.map((item) => (
-            <Link key={item.id} href={`/${locale}/products`} className="group min-w-[280px] md:min-w-0 snap-center relative aspect-[3/4] bg-[#0a0a0a] border border-white/5 rounded-2xl overflow-hidden hover:border-viconol-primary/30 transition-all duration-500 shadow-xl">
+            <Link key={item.id} href={`/${locale}/products?cat=${item.id}`} className="group min-w-[280px] md:min-w-0 snap-center relative aspect-[3/4] bg-[#0a0a0a] border border-white/5 rounded-2xl overflow-hidden hover:border-viconol-primary/30 transition-all duration-500 shadow-xl">
               <div className="absolute inset-0 z-0 overflow-hidden">
                 <Image src={item.image} alt={item.title} fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
               </div>

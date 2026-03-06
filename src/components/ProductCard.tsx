@@ -12,10 +12,13 @@ export default function ProductCard({ product, locale }: { product: any, locale:
   };
 
   const shortDesc = getTranslatedText(product.shortDesc);
+  
+  // SÉCURITÉ : Si le slug est vide dans la base de données, on utilise l'ID du produit.
+  const productUrl = product.slug ? product.slug : product.id;
 
   return (
     <Link 
-      href={`/${locale}/products/${product.slug}`}
+      href={`/${locale}/products/${productUrl}`}
       className="group flex flex-col bg-[#0a0a0a] rounded-2xl border border-white/5 overflow-hidden hover:border-viconol-primary/50 hover:shadow-[0_0_30px_rgba(212,175,55,0.15)] transition-all duration-300"
     >
       {/* FOND 100% BLANC POUR LA PHOTO DU PRODUIT */}

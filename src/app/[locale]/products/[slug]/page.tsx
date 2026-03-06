@@ -15,8 +15,14 @@ export default async function ProductDetailPage({
   const t = await getTranslations('ProductDetail');
   const tProducts = await getTranslations('Products');
 
-  const product = await prisma.product.findUnique({
-    where: { slug },
+  // SÉCURITÉ : On cherche le produit par son slug, mais aussi par son ID au cas où !
+  const product = await prisma.product.findFirst({
+    where: {
+      OR: [
+        { slug: slug },
+        { id: slug }
+      ]
+    },
     include: { category: true }
   });
 
@@ -32,7 +38,7 @@ export default async function ProductDetailPage({
   const shortDesc = getTranslatedText(product.shortDesc);
   const longDesc = getTranslatedText(product.longDesc);
   const specs = getTranslatedText(product.specs);
-  const categoryName = getTranslatedText(product.category.name);
+  const categoryName = getTranslatedText(product.category?.name);
 
   return (
     <main className="min-h-screen bg-[#050505] pt-20 md:pt-28 pb-32">
