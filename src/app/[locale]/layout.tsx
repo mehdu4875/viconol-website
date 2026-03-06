@@ -24,7 +24,7 @@ export default async function RootLayout({
   
   const messages = await getMessages();
 
-  let categories = [];
+  let categories: any[] = [];
   try {
     categories = await prisma.category.findMany({
       orderBy: { id: 'asc' }
